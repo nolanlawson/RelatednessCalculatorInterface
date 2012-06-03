@@ -18,7 +18,7 @@
         <r:layoutResources />
 	</head>
 	<body>
-		<div id="logo" class="header" role="banner"><a href="/RelatednessCalculatorInterface">
+		<div id="logo" class="header" role="banner"><a href="/${grailsApplication.config.grails.project.groupId}">
 			<h1>Relatedness Calculator</h1>
 		</div>
 		<g:layoutBody/>

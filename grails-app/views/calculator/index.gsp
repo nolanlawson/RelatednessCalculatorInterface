@@ -33,6 +33,11 @@
 
 #sidebar li {
 	line-height: 1.3;
+	margin-bottom: 0.3em;
+}
+
+#sidebar a:link,a:visited,a:hover {
+	color: #000000
 }
 
 #sidebar h1 {
@@ -64,6 +69,22 @@ p {
 	margin: 2em 0em 0em 1em;
 }
 
+#relatedness-explanation-content {
+	margin: 2em 0em 0em 1em;
+}
+
+#relatedness-explanation-content ul {
+	list-style-type: none;
+	margin-bottom: 0.6em;
+	margin-left: 20em;
+	padding: 0;
+}
+
+#relatedness-explanation-content li {
+	line-height: 1.3;
+	margin-bottom: 0.3em;
+}
+
 @media screen and (max-width: 480px) {
 	#sidebar {
 		display: none;
@@ -83,8 +104,9 @@ p {
 	<div id="sidebar" role="complementary">
 		<h1>Examples</h1>
 		<ul>
-			<g:each in="['Sister','Father','Grandmother']">
-				<li><a href="?q=${it}">${it}</a></li>
+			<g:each in="${exampleRelations}">
+				<li><a href="?q=${it.key}"> ${it.key} (${it.value})
+				</a></li>
 			</g:each>
 		</ul>
 	</div>
@@ -102,24 +124,41 @@ p {
 	</div>
 	<div id="calculator-display" role="main">
 		<h2>Enter relative:</h2>
-		<g:form action="index" method="GET">
-		<g:textField name="q" value="${params.q}"/>
-		<g:submitButton name="Calculate!" />
-		</g:form>
+		<div class="fieldcontain">
+			<g:form action="index" method="GET">
+				<br />
+				<g:textField name="q" value="${params.q}" />
+				<g:submitButton name="Calculate" id="go" />
+			</g:form>
+		</div>
 		<div id="result-display">
-			<span id="result">
-				<g:if test="${result}">
+			<span id="result"> <g:if test="${result}">
 					<g:if test="${result.failed}">
-						Nothing found for <strong>${params.q}</strong>
+						Nothing found for <strong> ${params.q}
+						</strong>
 					</g:if>
 					<g:else>
-						Result for <strong>${params.q}</strong>
-						<br/>Relatedness degree: ${result.degree}
-						<br/>Relatedness coefficient: ${result.coefficient}
+						Result for <strong> ${params.q}
+						</strong>
+						<br />Relatedness coefficient: ${result.coefficient}
+						<br />Degree of relation: ${result.degree}
 					</g:else>
 				</g:if>
 			</span>
 		</div>
 	</div>
+	<g:if test="${!result?.failed}">
+		<div id="relatedness-explanation" role="main">
+			<h2>Explanation:</h2>
+			<div id="relatedness-explanation-content">
+				<p>The relatedness between two people is calculated by finding the <em>common ancestors</em>
+				they share.  Once you've found the common ancestors, this gives you two measurements:</p>
+				<ul>
+					<li><b>Degree of relation:</b> how far you are from that person in your family tree.</li>
+					<li><b>Relatedness coefficient:</b> what percentage of your genes you share.</li>
+				</ul>
+			</div>
+		</div>
+	</g:if>
 </body>
 </html>
