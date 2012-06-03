@@ -25,7 +25,9 @@ class CalculatorService {
 				coefficient: relatedness.coefficient)
 		} catch (UnknownRelationException e) {
 			log.warn("Unknown relation",e)
-			return new RelatednessResult(failed : true)
+			return new RelatednessResult(
+				failed : true,
+				errorMessage : e.message)
 		}
     }
 }

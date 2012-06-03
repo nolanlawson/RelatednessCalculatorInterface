@@ -26,7 +26,11 @@ class CalculatorController {
 		'Grandson',
 		'Granddaughter',
 		'Great-grandson',
-		'Great-granddaughter']
+		'Great-granddaughter',
+		'Half-brother',
+		'Half-sister']
+	
+	def exampleRelationMappings
 	
     def index() { 
 	
@@ -39,11 +43,15 @@ class CalculatorController {
 	}
 	
 	private createExampleRelationMappings() {
-		def mapping = new TreeMap<String,Double>()
-		exampleRelations.each(){ relation ->
-			mapping[relation] = calculatorService.calculate(relation).coefficient
+		
+		if (!exampleRelationMappings) {
+		
+			exampleRelationMappings = new TreeMap<String,Double>()
+			exampleRelations.each(){ relation ->
+				exampleRelationMappings[relation] = calculatorService.calculate(relation).coefficient
+			}
 		}
-		return mapping
+		return exampleRelationMappings
 	}
 	
 }

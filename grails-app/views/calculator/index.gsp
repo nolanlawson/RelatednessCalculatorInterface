@@ -69,20 +69,32 @@ p {
 	margin: 2em 0em 0em 1em;
 }
 
+#relatedness-explanation {
+	margin: 2em 1em 1.25em 18em;
+}
+
 #relatedness-explanation-content {
 	margin: 2em 0em 0em 1em;
 }
 
 #relatedness-explanation-content ul {
 	list-style-type: none;
-	margin-bottom: 0.6em;
-	margin-left: 20em;
+	margin: 2em 4em 2em 4em;
 	padding: 0;
 }
 
 #relatedness-explanation-content li {
 	line-height: 1.3;
 	margin-bottom: 0.3em;
+}
+
+#quoted-text {
+	margin: 2em 4em 2em 4em;
+	font-size: 0.9em;
+}
+
+#relation-input {
+	width: 20em;	
 }
 
 @media screen and (max-width: 480px) {
@@ -105,7 +117,7 @@ p {
 		<h1>Examples</h1>
 		<ul>
 			<g:each in="${exampleRelations}">
-				<li><a href="?q=${it.key}"> ${it.key} (${it.value})
+				<li><a href="?q=${it.key}&example=true"> ${it.key} (${it.value})
 				</a></li>
 			</g:each>
 		</ul>
@@ -118,7 +130,7 @@ p {
 			reunion? Look no further than the <strong>relatedness
 				calculator</strong>.
 		</p>
-		<p>To use the calculator, enter the name of a relative using plain
+		<p>To use the calculator, enter the name of a relative in plain
 			English. For instance, you can type "sister," "dad's cousin," or
 			"grandpa's cousin's daughter."</p>
 	</div>
@@ -127,15 +139,20 @@ p {
 		<div class="fieldcontain">
 			<g:form action="index" method="GET">
 				<br />
-				<g:textField name="q" value="${params.q}" />
-				<g:submitButton name="Calculate" id="go" />
+				<g:if test="${params.example}">
+					<g:textField id="relation-input" name="q" value=""/>
+				</g:if>
+				<g:else>
+					<input id="relation-input" name="q" value="${params.q}"/>
+				</g:else>
+				<g:submitButton name="calculate" value="Calculate" />
 			</g:form>
 		</div>
 		<div id="result-display">
 			<span id="result"> <g:if test="${result}">
 					<g:if test="${result.failed}">
-						Nothing found for <strong> ${params.q}
-						</strong>
+						Nothing found for <strong> ${params.q}</strong>
+						<br/>Error: ${result.errorMessage}
 					</g:if>
 					<g:else>
 						Result for <strong> ${params.q}
@@ -147,16 +164,67 @@ p {
 			</span>
 		</div>
 	</div>
-	<g:if test="${!result?.failed}">
+	<g:if test="${result && !result.failed}">
 		<div id="relatedness-explanation" role="main">
 			<h2>Explanation:</h2>
 			<div id="relatedness-explanation-content">
-				<p>The relatedness between two people is calculated by finding the <em>common ancestors</em>
-				they share.  Once you've found the common ancestors, this gives you two measurements:</p>
+				<p>
+					The relatedness between two people is calculated by finding the <em>common
+						ancestors</em> they share. Once you've found the common ancestors, this
+					gives you two measures:
+				</p>
 				<ul>
-					<li><b>Degree of relation:</b> how far you are from that person in your family tree.</li>
-					<li><b>Relatedness coefficient:</b> what percentage of your genes you share.</li>
+					<li><b>Relatedness coefficient:</b> what percentage of your
+						genes you share.</li>
+					<li><b>Degree of relation:</b> how far you are from that
+						person in your family tree.</li>
+
 				</ul>
+				Richard Dawkins gives a great explanation of these calculations in <i>The
+					Selfish Gene</i>:
+
+				<div id="quoted-text">
+
+					<p>First identify all the common ancestors of A and B. For
+						instance, the common ancestors of a pair of first cousins are
+						their shared grandfather and grandmother. Once you have found a
+						common ancestor, it is of course logically true that all his
+						ancestors are common to A and B as well. However, we ignore all
+						but the most recent common ancestors. In this sense, first cousins
+						have only two common ancestors. If B is a lineal descendant of A,
+						for instance his great grandson, then A himself is the ‘common
+						ancestor’ we are looking for.</p>
+					<p>Having located the common ancestor(s) of A and B, count the
+						generation distance as follows. Starting at A, climb up the family
+						tree until you hit a common ancestor, and then climb down again to
+						B. The total number of steps up the tree and then down again is
+						the generation distance. For instance, if A is B’s uncle, the
+						generation distance is 3. The common ancestor is A’s father (say)
+						and B’s grandfather. Starting at A you have to climb up one
+						generation in order to hit the common ancestor. Then to get down
+						to B you have to descend two generations on the other side.
+						Therefore the generation distance is 1 + 2 = 3.</p>
+					<p>Having found the generation distance between A and B via a
+						particular common ancestor, calculate that part of their
+						relatedness for which that ancestor is responsible. To do this,
+						multiply 1/2 by itself once for each step of the generation
+						distance. If the generation distance is 3, this means calculate
+						1/2 x 1/2 x 1/2 or (1/2)^3. If the generation distance via a
+						particular ancestor is equal to g steps, the portion of
+						relatedness due to that ancestor is (1/2)^g.</p>
+					<p>But this is only part of the relatedness between A and B. If
+						they have more than one common ancestor we have to add on the
+						equivalent figure for each ancestor. It is usually the case that
+						the generation distance is the same for all common ancestors of a
+						pair of individuals. Therefore, having worked out the relatedness
+						between A and B due to any one of the ancestors, all you have to
+						do in practice is to multiply by the number of ancestors. First
+						cousins, for instance, have two common ancestors, and the
+						generation distance via each one is 4. Therefore their relatedness
+						is 2 x (1/2)^4 = 1/8. If A is B’s great-grandchild, the generation
+						distance is 3 and the number of common ‘ancestors’ is 1 (B
+						himself), so the relatedness is 1 x (1/2)^3 = 1/8.</p>
+				</div>
 			</div>
 		</div>
 	</g:if>
