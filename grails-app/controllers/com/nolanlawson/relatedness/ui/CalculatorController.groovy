@@ -4,9 +4,12 @@ class CalculatorController {
 
     def index() { 
 	
-	}
-	
-	def calculate() { 
+		if (!params.q) {
+			return [];
+		} else {
+			return [result : "myFunResult"]
+		}
 		
 	}
+	
 }
