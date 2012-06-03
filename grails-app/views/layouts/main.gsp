@@ -22,7 +22,13 @@
 			<h1>Relatedness Calculator</h1>
 		</div>
 		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
+		<div class="footer" role="contentinfo">
+		Relatedness Calculator version <g:meta name="app.version"/>, 
+		developed by <a href="http://nolanlawson.com">Nolan Lawson</a>.
+		<p/>This app is open-source.  See the code on GitHub: 
+		<a href='https://github.com/nolanlawson/RelatednessCalculator'>backend</a>
+		and <a href='https://github.com/nolanlawson/RelatednessCalculatorInterface'>frontend</a>.
+		</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
         <r:layoutResources />

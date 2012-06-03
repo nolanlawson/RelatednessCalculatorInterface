@@ -97,6 +97,21 @@ p {
 	width: 20em;	
 }
 
+#fun-facts {
+	margin: 2em 1em 1.25em 18em;
+}
+
+#fun-facts ul {
+	list-style-type: none;
+	margin: 2em 4em 2em 4em;
+	padding: 0;
+}
+
+#fun-facts li {
+	line-height: 1.3;
+	margin-bottom: 0.7em;
+}
+
 @media screen and (max-width: 480px) {
 	#sidebar {
 		display: none;
@@ -125,9 +140,9 @@ p {
 	<div id="page-body" role="main">
 		<h1>Welcome to the Relatedness Calculator</h1>
 		<p>
-			Wondering how likely your nephew is to "take after" you? Or if would
-			be weird to date that cute second cousin you met at the last family
-			reunion? Look no further than the <strong>relatedness
+			Wondering how likely your nephew is to "take after" you? Or if it would
+			be weird to date that cute second cousin you met at the family
+			reunion? Ask the <strong>relatedness
 				calculator</strong>.
 		</p>
 		<p>To use the calculator, enter the name of a relative in plain
@@ -145,7 +160,7 @@ p {
 				<g:else>
 					<input id="relation-input" name="q" value="${params.q}"/>
 				</g:else>
-				<g:submitButton name="calculate" value="Calculate" />
+				<input type="submit" value="Calculate" />
 			</g:form>
 		</div>
 		<div id="result-display">
@@ -226,6 +241,33 @@ p {
 						himself), so the relatedness is 1 x (1/2)^3 = 1/8.</p>
 				</div>
 			</div>
+		</div>
+		<div id="fun-facts" role="main">
+				<h2>Fun Facts:</h2>
+				<ul>
+				<li>The curious case of <a href='http://en.wikipedia.org/wiki/Double_cousins'>double cousins</a>
+				occurs when two siblings from one family each marry two siblings from another family. Double cousins
+				share 25% of their genes &mdash; the same as grandparents/grandchildren and half-siblings. No incest
+				involved, but it's still kind of weird!</li>
+				<li>Although it may be unpalatable to many people, 
+				<a href='http://www.nytimes.com/2009/11/26/garden/26cousins.html?pagewanted=all'>over 10% of marriages worldwide are between 
+				cousins</a>. 
+				Famous cousin-marriers include 
+				<a href='http://en.wikipedia.org/wiki/Charles_Darwin'>Charles Darwin</a>, 
+				<a href='http://en.wikipedia.org/wiki/Jerry_Lee_Lewis'>Jerry Lee Lewis</a>, 
+				and <a href='http://en.wikipedia.org/wiki/Shelbyville_Manhattan#Shelbyville'>Shelbyville Manhattan</a>.
+				</li>
+				<li>
+				Despite what you may have seen on <a href='http://en.wikipedia.org/wiki/Futurama'>Futurama</a>, it is not possible for
+			    <a href='http://en.wikipedia.org/wiki/Fry_(Futurama)'>Fry</a> to be his own grandfather.
+			    He would need to share 125% of his genes with himself.
+				</li>
+				<li>
+				In terms of relatedness, you are just as likely to "take after" your uncle (0.25) as
+				your grandfather (0.25).
+				</li>
+				
+				</ul>
 		</div>
 	</g:if>
 </body>
