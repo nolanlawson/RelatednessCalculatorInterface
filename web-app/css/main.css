@@ -107,6 +107,27 @@ img {
 	border: none;
 }
 
+.header {
+	background: #abbf78;
+	color: #000;
+	clear: both;
+	font-size: 0.8em;
+	margin-top: 1.5em;
+	padding: 1em;
+	min-height: 1em;
+}
+
+.header h1 {
+	font-size: 2em;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+
+.header a:link, a:visited, a:hover {
+	text-decoration: none;
+}
+
 .footer {
 	background: #abbf78;
 	color: #000;

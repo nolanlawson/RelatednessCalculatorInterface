@@ -83,13 +83,9 @@ p {
 	<div id="sidebar" role="complementary">
 		<h1>Examples</h1>
 		<ul>
-			<li>Sister</li>
-			<li>Father</li>
-			<li>Grandmother</li>
-			<li>Cousin</li>
-			<li>Uncle</li>
-			<li>Second cousin</li>
-			<li>Niece</li>
+			<g:each in="['Sister','Father','Grandmother']">
+				<li><a href="?q=${it}">${it}</a></li>
+			</g:each>
 		</ul>
 	</div>
 	<div id="page-body" role="main">
@@ -111,7 +107,18 @@ p {
 		<g:submitButton name="Calculate!" />
 		</g:form>
 		<div id="result-display">
-			<span id="result">${result}</span>
+			<span id="result">
+				<g:if test="${result}">
+					<g:if test="${result.failed}">
+						Nothing found for <strong>${params.q}</strong>
+					</g:if>
+					<g:else>
+						Result for <strong>${params.q}</strong>
+						<br/>Relatedness degree: ${result.degree}
+						<br/>Relatedness coefficient: ${result.coefficient}
+					</g:else>
+				</g:if>
+			</span>
 		</div>
 	</div>
 </body>

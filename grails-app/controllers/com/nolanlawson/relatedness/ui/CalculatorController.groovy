@@ -2,14 +2,15 @@ package com.nolanlawson.relatedness.ui
 
 class CalculatorController {
 
+	def calculatorService
+	
     def index() { 
 	
 		if (!params.q) {
-			return [];
+			return []
 		} else {
-			return [result : "myFunResult"]
+			return [result : calculatorService.calculate(params.q) ]
 		}
-		
 	}
 	
 }
