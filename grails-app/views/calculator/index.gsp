@@ -3,6 +3,23 @@
 <head>
 <meta name="layout" content="main" />
 <title>Relatedness Calculator</title>
+<r:require modules="canviz,path,prototype,excanvas" />
+<r:script>
+// TODO: there is probably a grails-ier way of getting the URL params from javascript...
+function getURLParameter(name) {
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
+}
+function drawCanviz(query) {
+	var canviz = new Canviz('graph_container');
+	canviz.setImagePath('graphs/images/');
+	canviz.setScale(0.9);
+	canviz.load("generateGraph?q=" + encodeURIComponent(getURLParameter('q')));
+}
+
+</r:script>
+
 <style type="text/css" media="screen">
 #sidebar {
 	background-color: #eee;
@@ -112,6 +129,12 @@ p {
 	margin-bottom: 0.7em;
 }
 
+#graph_container {
+	margin-left:auto;
+	margin-right:auto;
+	position: relative;
+}
+
 @media screen and (max-width: 480px) {
 	#sidebar {
 		display: none;
@@ -124,6 +147,7 @@ p {
 	}
 }
 </style>
+
 </head>
 <body>
 	<a href="#page-body" class="skip"><g:message
@@ -177,6 +201,11 @@ p {
 						</strong>
 						<br />Relatedness coefficient: ${result.coefficient}
 						<br />Degree of relation: ${result.degree}
+						<br/><div id="graph_container"></div>
+						<div id="debug_output"></div>
+						<r:script>
+							drawCanviz();
+						</r:script>
 					</g:else>
 				</g:if>
 			</span>
@@ -198,7 +227,7 @@ p {
 						person in your family tree.</li>
 
 				</ul>
-				Richard Dawkins gives a great explanation of these calculations in <i>The
+				Richard Dawkins gives a great explanation of this calculation in <i>The
 					Selfish Gene</i>:
 
 				<div id="quoted-text">

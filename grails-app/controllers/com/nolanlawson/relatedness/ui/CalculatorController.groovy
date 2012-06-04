@@ -2,6 +2,8 @@ package com.nolanlawson.relatedness.ui
 
 import java.util.TreeMap
 
+import com.nolanlawson.relatedness.parser.RelativeNameParser;
+
 class CalculatorController {
 
 	def calculatorService
@@ -42,6 +44,29 @@ class CalculatorController {
 		}
 	}
 	
+	/**
+	 * 
+	 * Call the Relatedness Calculator library and ask it to generate a DOT graph for the given query.
+	 * @return
+	 */
+	def generateGraph() {
+		def graph = RelativeNameParser.parseGraph(params.q.replace('+', ' '))
+		
+		// the raw text must be converted by xdot itself into a nicer format
+		def rawText = graph.drawGraph();
+		
+		File tempFile = File.createTempFile(Long.toHexString(new Random().nextLong()),".txt")
+		tempFile.deleteOnExit();
+		tempFile.write(rawText)
+		
+		// generate xdot format
+		def process = "dot -Txdot $tempFile.absolutePath".execute()
+		process.waitFor()
+		
+		def text = process.in.text;
+		render text: text, contentType: 'text/plain', template: null
+	}
+	
 	private createExampleRelationMappings() {
 		
 		if (!exampleRelationMappings) {
@@ -53,5 +78,4 @@ class CalculatorController {
 		}
 		return exampleRelationMappings
 	}
-	
 }
