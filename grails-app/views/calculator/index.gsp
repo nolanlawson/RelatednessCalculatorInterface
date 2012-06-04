@@ -132,8 +132,11 @@ p {
 		<h1>Examples</h1>
 		<ul>
 			<g:each in="${exampleRelations}">
-				<li><a href="?q=${it.key}&example=true"> ${it.key} (${it.value})
-				</a></li>
+				<li>
+					<g:link params="[q: it.key, example: true]">
+						${it.key} (${it.value})
+					</g:link>
+				</li>
 			</g:each>
 		</ul>
 	</div>
@@ -266,7 +269,25 @@ p {
 				In terms of relatedness, you are just as likely to "take after" your uncle (0.25) as
 				your grandfather (0.25).
 				</li>
-				
+				<li>
+				Identical twins share 100% of their genes, but fraternal twins share the same as regular siblings
+				(50%).  So you're as closely related to your identical twin's children (0.5) 
+				as your own children (0.5)! 
+				</li>
+				<li>
+				If there has already been incest in your family, you can calculate the relatedness coefficient
+				by taking the normal coefficient, then
+				adding in the coefficient due to the incest.  For instance, if your parents
+				are cousins, then your relatedness to your father is 0.5625, because he's your 
+				<g:link params="[q: 'father', example: true]">father</g:link> (0.5), as
+				well as your <g:link url="?q=mother's cousin&example=true">mother's cousin</g:link> (0.0625).
+				And your relatedness to your sister would be 0.5625
+				as well, because she's simultaneously your 
+				<g:link params="[q: 'sister', example: true]">sister</g:link> (0.5), your 
+				<g:link url="?q=father's cousin's daughter&example=true">father's cousin's daughter</g:link>
+				(0.03125), and your 
+				<g:link url="?q=mother's cousin's daughter&example=true">mother's cousin's daughter</g:link> (0.03125).
+				</li>
 				</ul>
 		</div>
 	</g:if>
