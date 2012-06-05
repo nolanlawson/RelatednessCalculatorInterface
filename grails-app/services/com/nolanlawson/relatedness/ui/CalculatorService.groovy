@@ -16,10 +16,9 @@ class CalculatorService {
 	/**
 	 * Use a super small in-memory soft reference map to hold the graph data
 	 */
-	Map<String,String> cache = new MapMaker()
-       .concurrencyLevel(4)
-       .softKeys()
-       .weakValues()
+	def cache = new MapMaker()
+       .concurrencyLevel(16)
+       .softValues()
        .maximumSize(1000)
        .expireAfterAccess(60, TimeUnit.MINUTES)
        .makeComputingMap(

@@ -40,7 +40,7 @@ class CalculatorController {
 			return [exampleRelations: createExampleRelationMappings()]
 		} else {
 			return [exampleRelations: createExampleRelationMappings(), 
-				result : calculatorService.calculate(params.q) ]
+				result : calculatorService.calculate(cleanQuery(params.q)) ]
 		}
 	}
 	
@@ -62,8 +62,12 @@ class CalculatorController {
 	 * @return
 	 */
 	def generateGraph() {
-		String text = calculatorService.generateGraph(params.q.replace('+',' '))
+		String text = calculatorService.generateGraph(cleanQuery(params.q))
 		render text: text, contentType: 'text/plain', template: null
+	}
+	
+	def cleanQuery(query) {
+		return query.trim().replace('+', ' ').replaceAll(~/\s+/, ' ').toLowerCase();
 	}
 	
 	private createExampleRelationMappings() {
