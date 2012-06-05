@@ -23,11 +23,10 @@
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
-		Relatedness Calculator version <g:meta name="app.version"/>, 
-		developed by <a href="http://nolanlawson.com">Nolan Lawson</a>.
-		<p/>This app is open-source.  See the code on GitHub: 
-		<a href='https://github.com/nolanlawson/RelatednessCalculator'>backend</a>
-		and <a href='https://github.com/nolanlawson/RelatednessCalculatorInterface'>frontend</a>.
+		Developed by <a href="http://nolanlawson.com">Nolan Lawson</a>.
+		This app is open-source on <a href='https://github.com/nolanlawson/RelatednessCalculatorInterface'>GitHub</a>.
+		<p/>Graph library courtesy of <a href='http://www.graphviz.org/'>Graphviz</a> and
+		<a href='http://code.google.com/p/canviz/'>Canviz</a>.
 		</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>

@@ -281,18 +281,12 @@ p {
 				occurs when two siblings from one family each marry two siblings from another family. Double cousins
 				share 25% of their genes &mdash; the same as grandparents/grandchildren and half-siblings. No incest
 				involved, but it's still kind of weird!</li>
-				<li>Although it may be unpalatable to many people, 
-				<a href='http://www.nytimes.com/2009/11/26/garden/26cousins.html?pagewanted=all'>over 10% of marriages worldwide are between 
-				cousins</a>. 
-				Famous cousin-marriers include 
+				<li>Although it is illegal in many places,
+				<a href='http://www.nytimes.com/2009/11/26/garden/26cousins.html?pagewanted=all'>over 10% of marriages worldwide</a>
+				 are between cousins.  Famous cousin-marriers include 
 				<a href='http://en.wikipedia.org/wiki/Charles_Darwin'>Charles Darwin</a>, 
 				<a href='http://en.wikipedia.org/wiki/Jerry_Lee_Lewis'>Jerry Lee Lewis</a>, 
 				and <a href='http://en.wikipedia.org/wiki/Shelbyville_Manhattan#Shelbyville'>Shelbyville Manhattan</a>.
-				</li>
-				<li>
-				Despite what you may have seen on <a href='http://en.wikipedia.org/wiki/Futurama'>Futurama</a>, it is not possible for
-			    <a href='http://en.wikipedia.org/wiki/Fry_(Futurama)'>Fry</a> to be his own grandfather.
-			    He would need to share 125% of his genes with himself.
 				</li>
 				<li>
 				In terms of relatedness, you are just as likely to "take after" your uncle (0.25) as
@@ -304,19 +298,23 @@ p {
 				as your own children (0.5)! 
 				</li>
 				<li>
-				If there has already been incest in your family, you can calculate the relatedness coefficient
-				by taking the normal coefficient, then
-				adding in the coefficient due to the incest.  For instance, if your parents
+				If there has already been incest in your family, you can calculate your relatedness coefficient to
+				other family members
+				by adding in any extra coefficients due to the incest.  For instance, if your parents
 				are cousins, then your relatedness to your father is 0.5625, because he's your 
 				<g:link params="[q: 'father', example: true]">father</g:link> (0.5), as
 				well as your <g:link url="?q=mother's cousin&example=true">mother's cousin</g:link> (0.0625).
-				And your relatedness to your sister would be 0.5625
-				as well, because she's simultaneously your 
+				And your relatedness to your sister would be 0.5625, because she's simultaneously your 
 				<g:link params="[q: 'sister', example: true]">sister</g:link> (0.5), your 
 				<g:link url="?q=father's cousin's daughter&example=true">father's cousin's daughter</g:link>
 				(0.03125), and your 
 				<g:link url="?q=mother's cousin's daughter&example=true">mother's cousin's daughter</g:link> (0.03125).
 				</li>
+				<li>
+				Despite what you may have seen on <a href='http://en.wikipedia.org/wiki/Futurama'>Futurama</a>, it is not possible for
+			    <a href='http://en.wikipedia.org/wiki/Fry_(Futurama)'>Fry</a> to be his own grandfather.
+			    He would need to share 125% of his genes with himself.
+				</li>				
 				</ul>
 		</div>
 	</g:if>
