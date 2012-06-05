@@ -2,7 +2,7 @@ package com.nolanlawson.relatedness.ui
 
 import java.util.TreeMap
 
-import com.nolanlawson.relatedness.parser.RelativeNameParser;
+
 
 class CalculatorController {
 
@@ -44,26 +44,25 @@ class CalculatorController {
 		}
 	}
 	
+	def version() {
+		render text: grailsApplication.metadata['app.version'], contentType: 'text/plain'
+	}
+	
+	/**
+	 * ShowInformation on the graph cache
+	 * @return
+	 */
+	def cacheReport() {
+		render text : calculatorService.cacheReport(), contentType: 'text/plain'
+	}
+	
 	/**
 	 * 
 	 * Call the Relatedness Calculator library and ask it to generate a DOT graph for the given query.
 	 * @return
 	 */
 	def generateGraph() {
-		def graph = RelativeNameParser.parseGraph(params.q.replace('+', ' '))
-		
-		// the raw text must be converted by xdot itself into a nicer format
-		def rawText = graph.drawGraph();
-		
-		File tempFile = File.createTempFile(Long.toHexString(new Random().nextLong()),".txt")
-		tempFile.deleteOnExit();
-		tempFile.write(rawText)
-		
-		// generate xdot format
-		def process = "dot -Txdot $tempFile.absolutePath".execute()
-		process.waitFor()
-		
-		def text = process.in.text;
+		String text = calculatorService.generateGraph(params.q.replace('+',' '))
 		render text: text, contentType: 'text/plain', template: null
 	}
 	

@@ -1,7 +1,9 @@
 class UrlMappings {
 
 	static mappings = {
-		"/generateGraph"(controller:"calculator",action:"generateGraph")
+		
+		"/$action"(controller:"calculator")
+		
 		"/$controller/$action?/$id?"{
 			constraints {
 				// apply constraints here

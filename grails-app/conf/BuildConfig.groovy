@@ -35,6 +35,7 @@ grails.project.dependency.resolution = {
 
         // runtime 'mysql:mysql-connector-java:5.1.16'
 		build 'com.nolanlawson.relatedness:relatedness-calculator:0.0.1-SNAPSHOT'
+		build 'com.google.guava:guava:r09'
     }
 
     plugins {

@@ -129,10 +129,16 @@ p {
 	margin-bottom: 0.7em;
 }
 
+#graph_container_outer {
+	margin: auto;
+	overflow: auto;
+	overflow-y: hidden;
+	padding-bottom:1em;
+	padding-top:1em;
+}
+
 #graph_container {
-	margin-left:auto;
-	margin-right:auto;
-	position: relative;
+	margin: auto	
 }
 
 @media screen and (max-width: 480px) {
@@ -201,7 +207,7 @@ p {
 						</strong>
 						<br />Relatedness coefficient: ${result.coefficient}
 						<br />Degree of relation: ${result.degree}
-						<br/><div id="graph_container"></div>
+						<br/><div id="graph_container_outer"><div id="graph_container"></div></div>
 						<div id="debug_output"></div>
 						<r:script>
 							drawCanviz();
@@ -277,7 +283,7 @@ p {
 		<div id="fun-facts" role="main">
 				<h2>Fun Facts:</h2>
 				<ul>
-				<li>The curious case of <a href='http://en.wikipedia.org/wiki/Double_cousins'>double cousins</a>
+				<li>The curious case of <g:link params='[q:"double cousin"]'>double cousins</g:link>
 				occurs when two siblings from one family each marry two siblings from another family. Double cousins
 				share 25% of their genes &mdash; the same as grandparents/grandchildren and half-siblings. No incest
 				involved, but it's still kind of weird!</li>
