@@ -282,11 +282,11 @@ p {
 				share 25% of their genes &mdash; the same as grandparents/grandchildren and half-siblings. No incest
 				involved, but it's still kind of weird!</li>
 				<li>Although it is illegal in many places,
-				<a href='http://www.nytimes.com/2009/11/26/garden/26cousins.html?pagewanted=all'>over 10% of marriages worldwide</a>
+				<a href='http://www.nytimes.com/2009/11/26/garden/26cousins.html'>over 10% of marriages worldwide</a>
 				 are between cousins.  Famous cousin-marriers include 
 				<a href='http://en.wikipedia.org/wiki/Charles_Darwin'>Charles Darwin</a>, 
 				<a href='http://en.wikipedia.org/wiki/Jerry_Lee_Lewis'>Jerry Lee Lewis</a>, 
-				and <a href='http://en.wikipedia.org/wiki/Shelbyville_Manhattan#Shelbyville'>Shelbyville Manhattan</a>.
+				and <a href='http://www.imdb.com/title/tt0757018/quotes?qt0285958'>Shelbyville Manhattan</a>.
 				</li>
 				<li>
 				In terms of relatedness, you are just as likely to "take after" your uncle (0.25) as
@@ -295,7 +295,7 @@ p {
 				<li>
 				Identical twins share 100% of their genes, but fraternal twins share the same as regular siblings
 				(50%).  So you're as closely related to your identical twin's children (0.5) 
-				as your own children (0.5)! 
+				as to your own children (0.5)! 
 				</li>
 				<li>
 				If there has already been incest in your family, you can calculate your relatedness coefficient to
