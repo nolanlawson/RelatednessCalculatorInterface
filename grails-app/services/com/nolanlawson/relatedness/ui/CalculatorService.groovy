@@ -4,70 +4,78 @@ import java.util.concurrent.TimeUnit
 
 import com.google.common.base.Function
 import com.google.common.collect.MapMaker
-import com.nolanlawson.relatedness.Relatedness
-import com.nolanlawson.relatedness.RelatednessCalculator;
-import com.nolanlawson.relatedness.Relation;
-import com.nolanlawson.relatedness.UnknownRelationException;
 import com.nolanlawson.relatedness.parser.RelativeNameParser
-import com.sun.corba.se.impl.orbutil.graph.Graph
+import com.nolanlawson.relatedness.RelatednessCalculator
+import com.nolanlawson.relatedness.RelationAndGraph
 
 class CalculatorService {
 
 	/**
 	 * Use a super small in-memory soft reference map to hold the graph data
 	 */
-	def cache = new MapMaker()
+	def graphCache = new MapMaker()
        .concurrencyLevel(16)
        .softValues()
        .maximumSize(1000)
        .expireAfterAccess(60, TimeUnit.MINUTES)
        .makeComputingMap(
-           new Function<String, String>() {
-             public String apply(String key) {
-               return generateGraphWithoutCaching(key);
+           new Function<String,Object> () {
+             public Object apply(String key) {
+               return generateResultWithoutCaching(key);
              }
            });
 	
-	/**
-	 * Call the JAR library and pass in the query string unmodified
-	 * @param query
-	 * @return
-	 */
+	  // return everything but the graph
     def calculate(String query) {
-		
-		try {
-			Relation relation = RelativeNameParser.parse(query)
-			
-			Relatedness relatedness = RelatednessCalculator.calculate(relation)
-			
-			return new RelatednessResult(
-				degree: relatedness.averageDegree, 
-				coefficient: relatedness.coefficient)
-		} catch (UnknownRelationException e) {
-			log.warn("Unknown relation",e)
-			return new RelatednessResult(
-				failed : true,
-				errorMessage : e.message)
-		}
+		def result = graphCache.get(query);
+		println result;
+		return [
+			failed : result.failed,
+			errorMessage : result.errorMessage,
+			coefficient : result.coefficient,
+			degree : result.degree
+			];
     }
-	
+
+	// return just the graph	
 	def generateGraph(String query) {
-		return cache.get(query.toLowerCase().trim())
+		def result =  graphCache.get(query)
+		println result
+		return result.graph;
 	}
 	
 	def cacheReport() {
-		return cache.toString();
+		return graphCache.toString();
 	}
 	
 	/**
-	 * Draw a graph for the given query
+	 * Draw a graph and calculate for the given query
 	 */
-	def generateGraphWithoutCaching(String query) {
+	def generateResultWithoutCaching(String query) {
+		RelationAndGraph relationAndGraph;
+		try {
+			relationAndGraph = RelativeNameParser.parse(query, true)
+		} catch (Exception e) { // relation exception
+			return new RelatednessResult(
+				failed : true,
+				errorMessage : e.message);
+		}
 		
-		def graph = RelativeNameParser.parseGraph(query)
+		// convert to xdot format
+		def graph = convertGraphToXdotFormat(relationAndGraph.graph.drawGraph());
 		
-		// the raw text must be converted by xdot itself into a nicer format
-		def rawText = graph.drawGraph();
+		// calculate the Relatedness from the Relation
+		def relatedness = RelatednessCalculator.calculate(relationAndGraph.relation);
+		
+		return new RelatednessResult(
+				graph: graph,
+				coefficient : relatedness.coefficient,
+				degree : relatedness.averageDegree);
+		
+	}
+	
+	// the raw text must be converted by xdot itself into a nicer format
+	def convertGraphToXdotFormat(rawText) {
 		
 		File tempFile = File.createTempFile(Long.toHexString(new Random().nextLong()),".txt")
 		tempFile.deleteOnExit();

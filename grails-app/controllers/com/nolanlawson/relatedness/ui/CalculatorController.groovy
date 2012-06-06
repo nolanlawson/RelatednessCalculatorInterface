@@ -79,6 +79,7 @@ class CalculatorController {
 				exampleRelationMappings[relation] = calculatorService.calculate(relation).coefficient
 			}
 		}
+		println exampleRelationMappings
 		return exampleRelationMappings
 	}
 }
