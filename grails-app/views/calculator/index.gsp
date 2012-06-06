@@ -164,7 +164,7 @@ p {
 			<g:each in="${exampleRelations}">
 				<li>
 					<g:link params="[q: it.key, example: true]">
-						${it.key} (${it.value})
+						${it.key} (${new java.text.DecimalFormat('0.##').format(it.value*100)}%)
 					</g:link>
 				</li>
 			</g:each>
@@ -205,7 +205,7 @@ p {
 					<g:else>
 						Result for <strong> ${params.q}
 						</strong>
-						<br />Relatedness coefficient: ${result.coefficient}
+						<br />Relatedness coefficient: ${new java.text.DecimalFormat('0.##############').format(result.coefficient)}%
 						<br />Degree of relation: ${result.degree}
 						<br/><div id="graph_container_outer"><div id="graph_container"></div></div>
 						<div id="debug_output"></div>
@@ -295,26 +295,26 @@ p {
 				and <a href='http://www.imdb.com/title/tt0757018/quotes?qt0285958'>Shelbyville Manhattan</a>.
 				</li>
 				<li>
-				In terms of relatedness, you are just as likely to "take after" your uncle (0.25) as
-				your grandfather (0.25).
+				In terms of relatedness, you are just as likely to "take after" your uncle (25%) as
+				your grandfather (25%).
 				</li>
 				<li>
-				Identical twins share 100% of their genes, but fraternal twins share the same as regular siblings
-				(50%).  So you're as closely related to your identical twin's children (0.5) 
-				as to your own children (0.5)! 
+				Fraternal twins have the same relatedness coefficient as regular siblings (50%),
+				but identical twins share 100% of their genes.  So you're as closely related to your 
+				identical twin's children (50%) as to your own children (50%)! 
 				</li>
 				<li>
 				If there has already been incest in your family, you can calculate your relatedness coefficient to
 				other family members
 				by adding in any extra coefficients due to the incest.  For instance, if your parents
-				are cousins, then your relatedness to your father is 0.5625, because he's your 
-				<g:link params="[q: 'father', example: true]">father</g:link> (0.5), as
-				well as your <g:link url="?q=mother's cousin&example=true">mother's cousin</g:link> (0.0625).
-				And your relatedness to your sister would be 0.5625, because she's simultaneously your 
-				<g:link params="[q: 'sister', example: true]">sister</g:link> (0.5), your 
+				are cousins, then your relatedness to your father is 56.25%, because he's your 
+				<g:link params="[q: 'father', example: true]">father</g:link> (50%), as
+				well as your <g:link url="?q=mother's cousin&example=true">mother's cousin</g:link> (6.25%).
+				And your relatedness to your sister would be 56.25%, because she's simultaneously your 
+				<g:link params="[q: 'sister', example: true]">sister</g:link> (50%), your 
 				<g:link url="?q=father's cousin's daughter&example=true">father's cousin's daughter</g:link>
-				(0.03125), and your 
-				<g:link url="?q=mother's cousin's daughter&example=true">mother's cousin's daughter</g:link> (0.03125).
+				(3.125%), and your 
+				<g:link url="?q=mother's cousin's daughter&example=true">mother's cousin's daughter</g:link> (3.125%).
 				</li>
 				<li>
 				Despite what you may have seen on <a href='http://en.wikipedia.org/wiki/Futurama'>Futurama</a>, it is not possible for
