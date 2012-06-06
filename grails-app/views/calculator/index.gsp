@@ -310,12 +310,6 @@ p {
 				are cousins, then your relatedness to your father is 56.25%, because he's your 
 				<g:link params="[q: 'father', example: true]">father</g:link> (50%), as
 				well as your <g:link url="?q=mother's cousin&example=true">mother's cousin</g:link> (6.25%).
-				And your relatedness to your sister would be 56.25%, because she's simultaneously your 
-				<g:link params="[q: 'sister', example: true]">sister</g:link> (50%), your 
-				<g:link url="?q=father's cousin's daughter&example=true">father's cousin's daughter</g:link>
-				(3.125%), and your 
-				<g:link url="?q=mother's cousin's daughter&example=true">mother's cousin's daughter</g:link> (3.125%).
-				</li>
 				<li>
 				Despite what you may have seen on <a href='http://en.wikipedia.org/wiki/Futurama'>Futurama</a>, it is not possible for
 			    <a href='http://en.wikipedia.org/wiki/Fry_(Futurama)'>Fry</a> to be his own grandfather.
