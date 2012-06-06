@@ -1,5 +1,6 @@
 package com.nolanlawson.relatedness.ui
 
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit
 
 import com.google.common.base.Function
@@ -24,6 +25,11 @@ class CalculatorService {
                return generateResultWithoutCaching(key);
              }
            });
+	   
+	/**
+	 * Use a small fixed-size Java thread pool for input/output on the remote 'dot' process.
+	 */
+	def threadPool = Executors.newFixedThreadPool(32);
 	
 	  // return everything but the graph
     def calculate(String query) {
@@ -77,12 +83,13 @@ class CalculatorService {
 	// the raw text must be converted by xdot itself into a nicer format
 	def convertGraphToXdotFormat(rawText) {
 		
-		File tempFile = File.createTempFile(Long.toHexString(new Random().nextLong()),".txt")
-		tempFile.deleteOnExit();
-		tempFile.write(rawText)
-		
-		// generate xdot format
-		def process = "dot -Txdot $tempFile.absolutePath".execute()
+		// write to process in separate thread
+		def process = "dot -Txdot".execute()
+		threadPool.submit({
+			process.out << rawText
+			process.out.close()
+		});
+	
 		process.waitFor()
 		
 		return process.in.text;

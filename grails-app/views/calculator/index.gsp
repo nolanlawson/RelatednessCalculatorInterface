@@ -205,7 +205,7 @@ p {
 					<g:else>
 						Result for <strong> ${params.q}
 						</strong>
-						<br />Relatedness coefficient: ${new java.text.DecimalFormat('0.##############').format(result.coefficient)}%
+						<br />Relatedness coefficient: ${new java.text.DecimalFormat('0.############').format(result.coefficient * 100)}%
 						<br />Degree of relation: ${result.degree}
 						<br/><div id="graph_container_outer"><div id="graph_container"></div></div>
 						<div id="debug_output"></div>
