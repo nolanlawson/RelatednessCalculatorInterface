@@ -31,10 +31,9 @@ class CalculatorService {
 	 */
 	def threadPool = Executors.newFixedThreadPool(32);
 	
-	  // return everything but the graph
+	// return everything but the graph
     def calculate(String query) {
 		def result = graphCache.get(query);
-		println result;
 		return [
 			failed : result.failed,
 			errorMessage : result.errorMessage,
@@ -45,13 +44,11 @@ class CalculatorService {
 
 	// return just the graph	
 	def generateGraph(String query) {
-		def result =  graphCache.get(query)
-		println result
-		return result.graph;
+		graphCache.get(query).graph
 	}
 	
 	def cacheReport() {
-		return graphCache.toString();
+		graphCache.toString();
 	}
 	
 	/**

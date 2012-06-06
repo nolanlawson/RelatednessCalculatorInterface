@@ -2,6 +2,8 @@ package com.nolanlawson.relatedness.ui
 
 import java.util.TreeMap
 
+import org.springframework.web.context.request.RequestContextHolder
+
 
 
 class CalculatorController {
@@ -39,6 +41,7 @@ class CalculatorController {
 		if (!params.q) {
 			return [exampleRelations: createExampleRelationMappings()]
 		} else {
+			logUserQuery(params.q);
 			return [exampleRelations: createExampleRelationMappings(), 
 				result : calculatorService.calculate(cleanQuery(params.q)) ]
 		}
@@ -64,6 +67,19 @@ class CalculatorController {
 	def generateGraph() {
 		String text = calculatorService.generateGraph(cleanQuery(params.q))
 		render text: text, contentType: 'text/plain', template: null
+	}
+	
+	def logUserQuery(query) {
+		// log the query just in case I want to grep through it later
+		def info = [
+			remoteAddr : request.getRemoteAddr(),
+			forwardedFor : request.getHeader("X-Forwarded-For"),
+			clientIp : request.getHeader("Client-IP"),
+			sessionId: RequestContextHolder.getRequestAttributes()?.getSessionId(),
+			example: Boolean.parseBoolean(params.example),
+			q : query
+		]
+		log.info(info)
 	}
 	
 	def cleanQuery(query) {
