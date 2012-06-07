@@ -11,10 +11,10 @@ function getURLParameter(name) {
         (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
     );
 }
-function drawCanviz(query) {
+function drawCanviz(graphWidth) {
 	var canviz = new Canviz('graph_container');
 	canviz.setImagePath('graphs/images/');
-	canviz.setScale(0.89);
+	canviz.setScale(graphWidth / document.getElementById('relatedness-explanation-content').width);
 	canviz.load("generateGraph?q=" + encodeURIComponent(getURLParameter('q')));
 }
 
@@ -207,7 +207,7 @@ p {
 						</strong>
 						<br />Relatedness coefficient: ${new java.text.DecimalFormat('0.############').format(result.coefficient * 100)}%
 						<br />Degree of relation: ${result.degree}
-						<br/><div id="graph_container_outer"><div id="graph_container"></div></div>
+						<br/><div id="graph_container_outer" style="width : ${result.graphWidth}"><div id="graph_container"></div></div>
 						<div id="debug_output"></div>
 						<r:script>
 							drawCanviz();
