@@ -179,7 +179,7 @@ p {
 				calculator</strong>.
 		</p>
 		<p>To use the calculator, enter the name of a relative in plain
-			English. For instance, you can type "sister," "dad's cousin," or
+			English. For instance, you can type "brother," "mom's cousin," or
 			"grandpa's cousin's daughter."</p>
 	</div>
 	<div id="calculator-display" role="main">
