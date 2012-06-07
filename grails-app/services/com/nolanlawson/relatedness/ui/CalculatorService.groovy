@@ -11,6 +11,8 @@ import com.nolanlawson.relatedness.RelationAndGraph
 
 class CalculatorService {
 
+	static transactional = false;
+	
 	/**
 	 * Use a super small in-memory soft reference map to hold the graph data
 	 */
