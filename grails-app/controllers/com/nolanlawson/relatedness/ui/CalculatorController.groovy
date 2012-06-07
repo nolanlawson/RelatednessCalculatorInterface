@@ -83,7 +83,11 @@ class CalculatorController {
 	}
 	
 	def cleanQuery(query) {
-		return query.trim().replace('+', ' ').replaceAll(~/\s+/, ' ').toLowerCase();
+		
+		query = query.trim().replace('+', ' ').replaceAll(~/\s+/, ' ').toLowerCase()
+		
+		// I assume people will be tempted to add "my", "your", etc.
+		return query.replaceFirst(~/^(?:my|your|the)\s+/,'')
 	}
 	
 	private createExampleRelationMappings() {

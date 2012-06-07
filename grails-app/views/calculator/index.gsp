@@ -14,7 +14,7 @@ function getURLParameter(name) {
 function drawCanviz(query) {
 	var canviz = new Canviz('graph_container');
 	canviz.setImagePath('graphs/images/');
-	canviz.setScale(0.9);
+	canviz.setScale(0.89);
 	canviz.load("generateGraph?q=" + encodeURIComponent(getURLParameter('q')));
 }
 
