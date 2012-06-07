@@ -17,7 +17,7 @@ class CalculatorService {
 	def graphCache = new MapMaker()
        .concurrencyLevel(16)
        .softValues()
-       .maximumSize(1000)
+       .maximumSize(100)
        .expireAfterAccess(60, TimeUnit.MINUTES)
        .makeComputingMap(
            new Function<String,Object> () {
