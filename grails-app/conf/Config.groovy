@@ -88,7 +88,8 @@ log4j = {
 			'org.hibernate',
 			'net.sf.ehcache.hibernate'
 	warn   'org.mortbay.log'
-	info 'com.nolanlawson'
+	info 'com.nolanlawson',
+		'grails.app'
 
 	root {
 		info 'infoLog','stdout'
