@@ -35,7 +35,7 @@ class CalculatorService {
 	
 	// return everything but the graph
     def calculate(String query) {
-		def result = graphCache.get(query);
+		def result = graphCache.get(query.trim().toLowerCase());
 		return [
 			failed : result.failed,
 			errorMessage : result.errorMessage,
@@ -46,7 +46,7 @@ class CalculatorService {
 
 	// return just the graph	
 	def generateGraph(String query) {
-		graphCache.get(query).graph
+		graphCache.get(query.trim().toLowerCase()).graph
 	}
 	
 	def cacheReport() {
