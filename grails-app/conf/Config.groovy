@@ -56,8 +56,6 @@ grails.web.disable.multipart=false
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
 
-// enable query caching by default
-grails.hibernate.cache.queries = true
 
 // set per-environment serverURL stem for creating absolute links
 def logDir = "../logs" // points to TOMCAT log directory.
@@ -85,8 +83,6 @@ log4j = {
 	error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 			'org.codehaus.groovy.grails',
 			'org.springframework',
-			'org.hibernate',
-			'net.sf.ehcache.hibernate'
 	warn   'org.mortbay.log'
 	info 'com.nolanlawson',
 		'grails.app'

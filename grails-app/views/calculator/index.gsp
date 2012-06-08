@@ -68,7 +68,7 @@ p {
 }
 
 #quoted-text {
-	margin: 2em 2em 2em 2em;
+	margin: 2em 3em 2em 3em;
 	font-size: 0.9em;
 }
 
