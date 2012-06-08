@@ -82,7 +82,7 @@ log4j = {
 
 	error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 			'org.codehaus.groovy.grails',
-			'org.springframework',
+			'org.springframework'
 	warn   'org.mortbay.log'
 	info 'com.nolanlawson',
 		'grails.app'
