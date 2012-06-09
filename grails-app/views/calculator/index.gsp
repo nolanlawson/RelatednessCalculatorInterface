@@ -273,10 +273,12 @@ p {
 		</g:if>
 	</div>
 
-	<a href="http://github.com/nolanlawson/RelatednessCalculatorInterface" target="_blank">
-		<img style="position: absolute; top: 0; right: 0; border: 0;" 
-		src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub">
-	</a>
+	<div id="github_ribbon">
+		<a href="http://github.com/nolanlawson/RelatednessCalculatorInterface" target="_blank">
+			<img style="position: absolute; top: 0; right: 0; border: 0;" 
+			src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub">
+		</a>
+	</div>
 
 	<!--  execute all the graph-drawing code only after the page has loaded,
 	and only if necessary -->

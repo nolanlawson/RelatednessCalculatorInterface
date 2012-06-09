@@ -79,4 +79,7 @@
 	.error ul {
 		margin-left: 0;
 	}
+	#github_ribbon img {
+		max-width : 22.5%
+	}
 }
