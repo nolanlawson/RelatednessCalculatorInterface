@@ -129,7 +129,7 @@ p {
 		<h1>Welcome to the Relatedness Calculator</h1>
 		<p>
 			Wondering how likely your nephew is to "take after" you? Or if it
-			would be weird to date that cute second cousin you met at the family
+			would be weird to date that cute distant cousin you met at the family
 			reunion? Ask the <strong>relatedness calculator</strong>.
 		</p>
 		<p>To use the calculator, enter the name of a relative in plain
@@ -150,8 +150,8 @@ p {
 			</div>
 		<span id="result"> <g:if test="${result}">
 				<g:if test="${result.failed}">
-						Nothing found for <strong> ${params.q}</strong>
-					<br />Error: ${result.errorMessage}
+						<p>Whoops! Nothing found for <strong> ${params.q}</strong>. Could you try re-phrasing it?</p>
+					<p>(Error: ${result.errorMessage})</p>
 				</g:if>
 				<g:else>
 						<p>Result for <strong> ${params.q}</strong>
@@ -233,18 +233,23 @@ p {
 					&mdash; the same as grandparents/grandchildren and half-siblings.
 					No incest involved, but it's still kind of weird!
 				</li>
-				<li>Although it is illegal in many places, <a
+				<li>Although it is illegal in many places, <a target="_blank"
 					href='http://www.nytimes.com/2009/11/26/garden/26cousins.html'>over
 						10% of marriages worldwide</a> are between cousins. Famous
-					cousin-marriers include <a
+					cousin-marriers include <a target="_blank"
 					href='http://en.wikipedia.org/wiki/Charles_Darwin'>Charles
-						Darwin</a>, <a href='http://en.wikipedia.org/wiki/Jerry_Lee_Lewis'>Jerry
-						Lee Lewis</a>, and <a
+						Darwin</a>, <a target="_blank" href='http://en.wikipedia.org/wiki/Jerry_Lee_Lewis'>Jerry
+						Lee Lewis</a>, and <a target="_blank"
 					href='http://www.imdb.com/title/tt0757018/quotes?qt0285958'>Shelbyville
 						Manhattan</a>.
 				</li>
 				<li>In terms of relatedness, you are just as likely to "take
 					after" your uncle (25%) as your grandfather (25%).</li>
+				<li>"Once removed," "twice removed," etc. refers to the distance up or down
+				    your family tree relative to a cousin.  For instance, a "second cousin,
+				    once removed" could be either your 
+				    <g:link url="?q=second cousin's child&example=true">second cousin's child</g:link>
+				    your <g:link url="?q=parent's second cousin&example=true">parent's second cousin</g:link>.
 				<li>Fraternal twins have the same relatedness coefficient as
 					regular siblings (50%), but identical twins share 100% of their
 					genes. So you're as closely related to your identical twin's
@@ -258,15 +263,20 @@ p {
 					well as your <g:link url="?q=mother's cousin&example=true">mother's cousin</g:link>
 					(6.25%).
 				<li>Despite what you may have seen on <a
-					href='http://en.wikipedia.org/wiki/Futurama'>Futurama</a>, it is
+					href='http://en.wikipedia.org/wiki/Futurama' target="_blank">Futurama</a>, it is
 					not possible for <a
-					href='http://en.wikipedia.org/wiki/Fry_(Futurama)'>Fry</a> to be
+					href='http://en.wikipedia.org/wiki/Fry_(Futurama)' target="_blank">Fry</a> to be
 					his own grandfather. He would need to share 125% of his genes with
 					himself.
 				</li>
 			</ul>
 		</g:if>
 	</div>
+
+	<a href="http://github.com/nolanlawson/RelatednessCalculatorInterface" target="_blank">
+		<img style="position: absolute; top: 0; right: 0; border: 0;" 
+		src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub">
+	</a>
 
 	<!--  execute all the graph-drawing code only after the page has loaded,
 	and only if necessary -->

@@ -24,9 +24,9 @@
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
 		Developed by <a href="http://nolanlawson.com">Nolan Lawson</a>.
-		This app is open-source on <a href='https://github.com/nolanlawson/RelatednessCalculatorInterface'>GitHub</a>.
-		<p/>Graphs courtesy of <a href='http://www.graphviz.org/'>Graphviz</a> and
-		<a href='http://code.google.com/p/canviz/'>Canviz</a>.
+		This app is open-source on <a target="_blank" href='https://github.com/nolanlawson/RelatednessCalculatorInterface'>GitHub</a>.
+		<p/>Graphs courtesy of <a target="_blank" href='http://www.graphviz.org/'>Graphviz</a> and
+		<a target="_blank" href='http://code.google.com/p/canviz/'>Canviz</a>.
 		</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
