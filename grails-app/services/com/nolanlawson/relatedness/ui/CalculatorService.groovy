@@ -40,7 +40,8 @@ class CalculatorService {
 			failed : result.failed,
 			errorMessage : result.errorMessage,
 			coefficient : result.coefficient,
-			degree : result.degree
+			degree : result.degree,
+			graphWidth : result.graphWidth
 			];
     }
 
@@ -50,7 +51,7 @@ class CalculatorService {
 	}
 	
 	def cacheReport() {
-		graphCache.toString();
+		"size: $graphCache.size $graphCache"
 	}
 	
 	/**
@@ -69,13 +70,17 @@ class CalculatorService {
 		// convert to xdot format
 		def graph = convertGraphToXdotFormat(relationAndGraph.graph.drawGraph());
 		
+		// find the pixel width
+		def graphWidth = Integer.parseInt((graph =~ ~/b="0,0,(\d+),/)[0][1])
+		
 		// calculate the Relatedness from the Relation
 		def relatedness = RelatednessCalculator.calculate(relationAndGraph.relation);
 		
 		return new RelatednessResult(
 				graph: graph,
 				coefficient : relatedness.coefficient,
-				degree : relatedness.averageDegree);
+				degree : relatedness.averageDegree,
+				graphWidth : graphWidth);
 		
 	}
 	

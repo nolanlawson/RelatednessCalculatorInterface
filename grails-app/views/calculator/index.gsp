@@ -73,7 +73,7 @@ p {
 }
 
 #relation-input {
-	width: 20em;
+	width: 60%;
 }
 
 #page-body ul {
@@ -137,7 +137,7 @@ p {
 			"grandpa's cousin's daughter."</p>
 
 		<h2>Enter relative:</h2>
-		<div id="entry-form">
+		<div id="entry-form"">
 			<g:form action="index" method="GET">
 				<g:if test="${params.example}">
 					<g:textField id="relation-input" name="q" value="" />
@@ -280,8 +280,11 @@ p {
 			
 			function drawCanviz() {
 				var canviz = new Canviz('graph_container');
-				canviz.setImagePath('graphs/images/');
-				var scale = ${result.graphWidth} / 300.0;
+				// fudge factor of 40 for margins on both side (which should only be 8, but whatever)
+				var canvasWidth = document.getElementById('page-body').offsetWidth - (40);
+				// canviz automatically scales everything to 96/72
+				var graphWidth = ${result.graphWidth} * 96 / 72;
+				var scale = graphWidth > canvasWidth ? canvasWidth / graphWidth : 1.0;
 				canviz.setScale(scale);
 				canviz.load("generateGraph?q=${escapedQuery}");
 			}
