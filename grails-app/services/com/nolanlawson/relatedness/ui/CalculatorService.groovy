@@ -3,6 +3,8 @@ package com.nolanlawson.relatedness.ui
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit
 
+import javax.annotation.PreDestroy;
+
 import com.google.common.base.Function
 import com.google.common.collect.MapMaker
 import com.nolanlawson.relatedness.parser.RelativeNameParser
@@ -31,7 +33,14 @@ class CalculatorService {
 	/**
 	 * Use a small fixed-size Java thread pool for input/output on the remote 'dot' process.
 	 */
-	def threadPool = Executors.newFixedThreadPool(32);
+	def threadPool = Executors.newFixedThreadPool(16);
+	
+	@PreDestroy
+	public void cleanUp() throws Exception {
+		// to be called when the webapp is shut down, so that we can clean up the threads
+		log.info("shutting down threadpool...");
+		threadPool.shutdown();
+	}
 	
 	// return everything but the graph
     def calculate(String query) {
