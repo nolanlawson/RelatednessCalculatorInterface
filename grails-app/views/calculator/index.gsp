@@ -97,6 +97,10 @@ p {
 	margin: auto
 }
 
+#spinner {
+	text-align: center;
+}
+
 @media screen and (max-width: 480px) {
 	#sidebar {
 		display: none;
@@ -159,6 +163,9 @@ p {
 						</p>
 					<br />
 					<div id="graph_container_outer">
+						<div id="spinner">
+							<g:img dir="images" file="spinner.gif" width="16" height="16"/>
+						</div>
 						<div id="graph_container"></div>
 					</div>
 					<div id="debug_output"></div>

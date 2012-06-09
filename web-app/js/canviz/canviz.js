@@ -653,6 +653,7 @@ var Canviz = Class.create({
 		this.ctx.scale(ctxScale, ctxScale);
 		this.graphs[0].draw(this.ctx, ctxScale, redrawCanvasOnly);
 		this.ctx.restore();
+		$('spinner').style.display = "none";
 	},
 	drawPath: function(ctx, path, filled, dashStyle) {
 		if (filled) {
@@ -762,7 +763,7 @@ var CanvizImage = Class.create({
 	},
 	onLoad: function() {
 		this.loaded = true;
-		this.onFinish();
+		this.onFinish();		
 	},
 	onFinish: function() {
 		this.finished = true;
