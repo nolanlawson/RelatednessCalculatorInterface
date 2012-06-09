@@ -1,5 +1,7 @@
 package com.nolanlawson.relatedness.ui
 
+import groovy.json.StringEscapeUtils;
+
 import java.util.TreeMap
 
 import org.springframework.web.context.request.RequestContextHolder
@@ -43,7 +45,8 @@ class CalculatorController {
 		} else {
 			logUserQuery(params.q);
 			return [exampleRelations: createExampleRelationMappings(), 
-				result : calculatorService.calculate(cleanQuery(params.q)) ]
+				result : calculatorService.calculate(cleanQuery(params.q)),
+				escapedQuery : URLEncoder.encode(params.q,'UTF-8') ]
 		}
 	}
 	
@@ -65,7 +68,7 @@ class CalculatorController {
 	 * @return
 	 */
 	def generateGraph() {
-		String text = calculatorService.generateGraph(cleanQuery(params.q))
+		String text = calculatorService.generateGraph(cleanQuery(params.q)) ?: 'error'
 		render text: text, contentType: 'text/plain', template: null
 	}
 	

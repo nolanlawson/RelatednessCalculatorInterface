@@ -163,25 +163,6 @@ p {
 						<div id="graph_container"></div>
 					</div>
 					<div id="debug_output"></div>
-
-					<r:require modules="canviz,path,prototype,excanvas" />
-
-					<r:script>
-							// TODO: there is probably a grails-ier way of getting the URL params from javascript...
-							function getURLParameter(name) {
-							    return decodeURI(
-							        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
-							    );
-							}
-							function drawCanviz() {
-								var canviz = new Canviz('graph_container');
-								canviz.setImagePath('graphs/images/');
-								canviz.setScale(0.89);
-								canviz.load("generateGraph?q=" + encodeURIComponent(getURLParameter('q')));
-							}
-						
-							drawCanviz();
-						</r:script>
 				</g:else>
 			</g:if>
 		</span>
@@ -286,5 +267,27 @@ p {
 			</ul>
 		</g:if>
 	</div>
+
+	<!--  execute all the graph-drawing code only after the page has loaded,
+	and only if necessary -->
+	<g:if test="${result && !result.failed}">
+		<g:javascript library="path" />
+		<g:javascript library="prototype" />
+		<g:javascript library="excanvas" />
+		<g:javascript library="canviz" />
+
+		<g:javascript>
+			
+			function drawCanviz() {
+				var canviz = new Canviz('graph_container');
+				canviz.setImagePath('graphs/images/');
+				var scale = ${result.graphWidth} / 300.0;
+				canviz.setScale(scale);
+				canviz.load("generateGraph?q=${escapedQuery}");
+			}
+		
+			window.onload=drawCanviz;
+		</g:javascript>
+	</g:if>
 </body>
 </html>
