@@ -255,7 +255,7 @@ p {
 				    your family tree relative to a cousin.  For instance, a "second cousin,
 				    once removed" could be either your 
 				    <g:link url="?q=second cousin's child&example=true">second cousin's child</g:link>
-				    your <g:link url="?q=parent's second cousin&example=true">parent's second cousin</g:link>.
+				    or your <g:link url="?q=parent's second cousin&example=true">parent's second cousin</g:link>.
 				<li>Fraternal twins have the same relatedness coefficient as
 					regular siblings (50%), but identical twins share 100% of their
 					genes. So you're as closely related to your identical twin's
