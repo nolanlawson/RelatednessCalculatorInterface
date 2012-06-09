@@ -82,4 +82,18 @@
 	#github_ribbon img {
 		max-width : 22.5%
 	}
+	
+	#page-body p {
+		line-height: 1.2em;
+		font-size: 0.9em;
+	}
+	
+	#page-body h1 {
+		font-size: 1em;
+		line-height : 1.2em;
+	}
+	
+	.footer {
+		font-size: 0.6em;
+	}
 }
