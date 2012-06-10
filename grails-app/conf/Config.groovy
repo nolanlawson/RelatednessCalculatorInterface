@@ -28,6 +28,26 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
                       multipartForm: 'multipart/form-data'
                     ]
 
+//The following options apply to YUI JS Minifier only
+
+environments {
+	production {
+		//Minify only, do not obfuscate javascript code
+		grails.resources.mappers.yuijsminify.js.noMunge = false
+		
+		//Preserve all semicolons in javascript files
+		grails.resources.mappers.yuijsminify.js.preserveAllSemicolons = false
+		
+		//Disable all micro optimizations in javascript files
+		grails.resources.mappers.yuijsminify.js.disableOptimizations = false
+	}
+	development {
+		//Completely disable css and/or js processor
+		grails.resources.mappers.yuicssminify.disable=true
+		grails.resources.mappers.yuijsminify.disable=true
+	}
+}
+
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
