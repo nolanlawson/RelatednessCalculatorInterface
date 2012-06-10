@@ -12,39 +12,13 @@ class CalculatorController {
 
 	def calculatorService
 	
-	def exampleRelations = [
-		'Sister',
-		'Father',
-		'Grandmother',
-		'Brother',
-		'Cousin',
-		'Second Cousin', 
-		'Mother',
-		'Grandfather',
-		'Great-grandfather',
-		'Great-grandmother',
-		'Uncle',
-		'Aunt',
-		'Nephew',
-		'Niece',
-		'Son',
-		'Daughter',
-		'Grandson',
-		'Granddaughter',
-		'Great-grandson',
-		'Great-granddaughter',
-		'Half-brother',
-		'Half-sister']
-	
-	def exampleRelationMappings
-	
     def index() { 
 	
 		if (!params.q) {
-			return [exampleRelations: createExampleRelationMappings()]
+			return [exampleRelations: calculatorService.createExampleRelationMappings()]
 		} else {
 			logUserQuery(params.q);
-			return [exampleRelations: createExampleRelationMappings(), 
+			return [exampleRelations: calculatorService.createExampleRelationMappings(), 
 				result : calculatorService.calculate(cleanQuery(params.q)),
 				escapedQuery : URLEncoder.encode(params.q,'UTF-8') ]
 		}
@@ -78,7 +52,8 @@ class CalculatorController {
 			remoteAddr : request.getRemoteAddr(),
 			forwardedFor : request.getHeader("X-Forwarded-For"),
 			clientIp : request.getHeader("Client-IP"),
-			sessionId: RequestContextHolder.getRequestAttributes()?.getSessionId(),
+			sessionId : RequestContextHolder.getRequestAttributes()?.getSessionId(),
+			referer : request.getHeader('referer'),
 			example: Boolean.parseBoolean(params.example),
 			q : query
 		]
@@ -91,17 +66,5 @@ class CalculatorController {
 		
 		// I assume people will be tempted to add "my", "your", etc.
 		return query.replaceFirst(~/^(?:my|your|the)\s+/,'')
-	}
-	
-	private createExampleRelationMappings() {
-		
-		if (!exampleRelationMappings) {
-		
-			exampleRelationMappings = new TreeMap<String,Double>()
-			exampleRelations.each(){ relation ->
-				exampleRelationMappings[relation] = calculatorService.calculate(relation).coefficient
-			}
-		}
-		return exampleRelationMappings
 	}
 }

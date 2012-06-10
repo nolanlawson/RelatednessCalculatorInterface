@@ -30,6 +30,34 @@ class CalculatorService {
              }
            });
 	   
+	// example relations shown in the sidebar
+	def exampleRelations = [
+		   'Sister',
+		   'Father',
+		   'Grandmother',
+		   'Brother',
+		   'Cousin',
+		   'Second Cousin',
+		   'Mother',
+		   'Grandfather',
+		   'Great-grandfather',
+		   'Great-grandmother',
+		   'Uncle',
+		   'Aunt',
+		   'Nephew',
+		   'Niece',
+		   'Son',
+		   'Daughter',
+		   'Grandson',
+		   'Granddaughter',
+		   'Great-grandson',
+		   'Great-granddaughter',
+		   'Half-brother',
+		   'Half-sister']
+	
+	// cache of the example relations
+	def exampleRelationMappings
+	   
 	/**
 	 * Use a small fixed-size Java thread pool for input/output on the remote 'dot' process.
 	 */
@@ -106,5 +134,16 @@ class CalculatorService {
 		process.waitFor()
 		
 		return process.in.text;
+	}
+	
+	private createExampleRelationMappings() {
+		
+		if (!exampleRelationMappings) {
+			exampleRelationMappings = new TreeMap<String,Double>()
+			exampleRelations.each(){ relation ->
+				exampleRelationMappings[relation] = calculate(relation).coefficient
+			}
+		}
+		return exampleRelationMappings
 	}
 }
