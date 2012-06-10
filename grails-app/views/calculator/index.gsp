@@ -260,7 +260,7 @@ p {
 					regular siblings (50%), but identical twins share 100% of their
 					genes. So you're as closely related to your identical twin's
 					children (50%) as to your own children (50%)!</li>
-				<li>If there has already been incest in your family, you can
+				<li>If there has been incest in your ancestry, you can
 					calculate your relatedness coefficient to other family members by
 					adding in any extra coefficients due to the incest. For instance,
 					if your parents are cousins, then your relatedness to your father
