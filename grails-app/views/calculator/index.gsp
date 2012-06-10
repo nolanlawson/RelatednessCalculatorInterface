@@ -2,7 +2,9 @@
 <html>
 <head>
 <meta name="layout" content="main" />
-<title>Relatedness Calculator</title>
+<title>
+<g:if test="${result && !result.failed}">${params.q} - </g:if>Relatedness Calculator
+</title>
 
 <style type="text/css" media="screen">
 #sidebar {
