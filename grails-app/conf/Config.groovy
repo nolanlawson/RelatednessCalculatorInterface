@@ -32,6 +32,10 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
 
 environments {
 	production {
+		//Completely disable css and/or js processor
+		grails.resources.mappers.yuicssminify.disable=false
+		grails.resources.mappers.yuijsminify.disable=false
+		
 		//Minify only, do not obfuscate javascript code
 		grails.resources.mappers.yuijsminify.js.noMunge = false
 		
@@ -44,7 +48,7 @@ environments {
 	development {
 		//Completely disable css and/or js processor
 		grails.resources.mappers.yuicssminify.disable=true
-		grails.resources.mappers.yuijsminify.disable=true
+		grails.resources.mappers.yuijsminify.disable=true		
 	}
 }
 
