@@ -304,7 +304,8 @@ p {
 				var canvasWidth = document.getElementById('page-body').offsetWidth - (40);
 				// canviz automatically scales everything to 96/72
 				var graphWidth = ${result.graphWidth} * 96 / 72;
-				var scale = graphWidth > canvasWidth ? canvasWidth / graphWidth : 1.0;
+				// use 0.9 as a nice default graph size
+				var scale = graphWidth > canvasWidth ? canvasWidth / graphWidth : 0.9;
 				canviz.setScale(scale);
 				canviz.load("generateGraph?q=${escapedQuery}");
 			}

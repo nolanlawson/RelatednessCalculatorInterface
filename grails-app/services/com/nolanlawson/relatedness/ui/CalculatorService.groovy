@@ -61,7 +61,7 @@ class CalculatorService {
 	/**
 	 * Use a small fixed-size Java thread pool for input/output on the remote 'dot' process.
 	 */
-	def threadPool = Executors.newFixedThreadPool(16);
+	def threadPool = Executors.newFixedThreadPool(8);
 	
 	@PreDestroy
 	public void cleanUp() throws Exception {

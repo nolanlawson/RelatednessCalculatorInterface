@@ -1,5 +1,7 @@
 package com.nolanlawson.relatedness.ui
 
+import grails.converters.*;
+
 import groovy.json.StringEscapeUtils;
 
 import java.util.TreeMap
@@ -54,14 +56,13 @@ class CalculatorController {
 			clientIp : request.getHeader("Client-IP"),
 			sessionId : RequestContextHolder.getRequestAttributes()?.getSessionId(),
 			referer : request.getHeader('referer'),
-			example: Boolean.parseBoolean(params.example),
-			q : query
+			'params' : params
 		]
-		log.info(info)
+		log.info(info as JSON)
 	}
 	
 	def cleanQuery(query) {
-		
+		query = query ?: "";
 		query = query.trim().replace('+', ' ').replaceAll(~/\s+/, ' ').toLowerCase()
 		
 		// I assume people will be tempted to add "my", "your", etc.
