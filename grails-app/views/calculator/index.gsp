@@ -6,116 +6,6 @@
 <g:if test="${result && !result.failed}">${params.q} - </g:if>Relatedness Calculator
 </title>
 
-<style type="text/css" media="screen">
-#sidebar {
-	background-color: #eee;
-	border: .2em solid #fff;
-	margin: 2em 2em 1em;
-	padding: 1em;
-	width: 12em;
-	float: left;
-	-moz-box-shadow: 0px 0px 1.25em #ccc;
-	-webkit-box-shadow: 0px 0px 1.25em #ccc;
-	box-shadow: 0px 0px 1.25em #ccc;
-	-moz-border-radius: 0.6em;
-	-webkit-border-radius: 0.6em;
-	border-radius: 0.6em;
-}
-
-.ie6 #sidebar {
-	display: inline;
-	/* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-}
-
-#sidebar ul {
-	font-size: 0.9em;
-	list-style-type: none;
-	margin-bottom: 0.6em;
-	padding: 0;
-}
-
-#sidebar li {
-	line-height: 1.3;
-	margin-bottom: 0.3em;
-}
-
-#sidebar a:link,a:visited,a:hover {
-	color: #000000
-}
-
-#sidebar h1 {
-	text-transform: uppercase;
-	font-size: 1.1em;
-	margin: 0 0 0.3em;
-}
-
-#page-body {
-	margin: 2em 1em 1.25em 18em;
-}
-
-h2 {
-	margin-top: 1em;
-	margin-bottom: 0.3em;
-	font-size: 1em;
-}
-
-p {
-	margin: 0.5em 0 0 1em;
-}
-
-#entry-form {
-	line-height: 1.5;
-	margin: 1em 0 0 1em;
-}
-
-#quoted-text {
-	margin: 2em 3em 2em 3em;
-	font-size: 0.9em;
-}
-
-#relation-input {
-	width: 60%;
-}
-
-#page-body ul {
-	margin: 2em 4em 2em 4em;
-	padding: 0;
-}
-
-#page-body li {
-	line-height: 1.3;
-	margin-bottom: 0.7em;
-}
-
-#graph_container_outer {
-	margin: auto;
-	overflow: auto;
-	overflow-y: hidden;
-	padding-bottom: 1em;
-	padding-top: 1em;
-}
-
-#graph_container {
-	margin: auto
-}
-
-#spinner {
-	text-align: center;
-}
-
-@media screen and (max-width: 480px) {
-	#sidebar {
-		display: none;
-	}
-	#page-body {
-		margin: 0 1em 1em;
-	}
-	#page-body h1 {
-		margin-top: 0;
-	}
-}
-</style>
-
 </head>
 <body>
 	<a href="#page-body" class="skip"><g:message
@@ -295,22 +185,12 @@ p {
 		<g:javascript library="prototype" />
 		<g:javascript library="excanvas" />
 		<g:javascript library="canviz" />
-
+		<g:javascript library="drawcanviz"/>
 		<g:javascript>
-			
-			function drawCanviz() {
-				var canviz = new Canviz('graph_container');
-				// fudge factor of 40 for margins on both side (which should only be 8, but whatever)
-				var canvasWidth = document.getElementById('page-body').offsetWidth - (40);
-				// canviz automatically scales everything to 96/72
-				var graphWidth = ${result.graphWidth} * 96 / 72;
-				// use 0.9 as a nice default graph size
-				var scale = graphWidth > canvasWidth ? canvasWidth / graphWidth : 0.9;
-				canviz.setScale(scale);
-				canviz.load("generateGraph?q=${escapedQuery}");
+			function drawGraph() {
+				drawCanviz(${result.graphWidth}, "${escapedQuery}");
 			}
-		
-			window.onload=drawCanviz;
+			window.onload=drawGraph;
 		</g:javascript>
 	</g:if>
 </body>
