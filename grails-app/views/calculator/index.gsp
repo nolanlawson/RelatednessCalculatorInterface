@@ -74,17 +74,26 @@ p {
 }
 
 #relation-input {
-	width: 60%;
+	width: 90%;
 }
 
-#page-body ul {
+#explanation ul {
 	margin: 2em 4em 2em 4em;
 	padding: 0;
 }
 
-#page-body li {
+#explanation li {
 	line-height: 1.3;
 	margin-bottom: 0.7em;
+}
+
+#result ul {
+    margin: 0em 4em 0em 4em;
+    padding: 0;
+}
+
+#result li {
+    line-height: 1.3;
 }
 
 #graph_container_outer {
@@ -103,6 +112,13 @@ p {
 	text-align: center;
 }
 
+.yui-ac {
+    float: left;
+    width: 60%;
+}
+
+
+
 @media screen and (max-width: 480px) {
 	#sidebar {
 		display: none;
@@ -115,7 +131,7 @@ p {
 	}
 }
 </style>
-
+<resource:autoComplete skin="default" />
 </head>
 <body>
 	<a href="#page-body" class="skip"><g:message
@@ -143,17 +159,23 @@ p {
 
 		<h2>Enter relative:</h2>
 		<div id="entry-form"">
-			<g:form action="index" method="GET">
+			<g:form id="mainform" action="index" method="GET">
 				<g:if test="${params.example}">
-					<g:textField id="relation-input" name="q" value="" />
+				    <richui:autoComplete id="relation-input" name="q" 
+				        action="${createLinkTo('dir': 'autocomplete')}" 
+				        onItemSelect="document.forms[0].submit();"/>
 				</g:if>
 				<g:else>
-					<input id="relation-input" name="q" value="${params.q}" />
+				    <richui:autoComplete id="relation-input" name="q" 
+                        action="${createLinkTo('dir': 'autocomplete')}" 
+                        onItemSelect="document.forms[0].submit();"
+                        value="${params.q }"/>
+                        <!-- value="${params.q }" -->
 				</g:else>
 				<input type="submit" value="Calculate" />
 			</g:form>
 			</div>
-		<span id="result"> <g:if test="${result}">
+		<div id="result"> <g:if test="${result}">
 				<g:if test="${result.failed}">
 				    <g:if test="${result.parseError == 'Ambiguity' }">
 				        <p>"${params.q}" is ambiguous. <br/><strong>Did you mean...</strong>
@@ -190,7 +212,8 @@ p {
 					<div id="debug_output"></div>
 				</g:else>
 			</g:if>
-		</span>
+		</div>
+		<div id="explanation">
 		<g:if test="${result && !result.failed}">
 			<h2>Explanation:</h2>
 			<p>
@@ -296,6 +319,7 @@ p {
 				</li>
 			</ul>
 		</g:if>
+	</div>
 	</div>
 
 	<div id="github_ribbon">
