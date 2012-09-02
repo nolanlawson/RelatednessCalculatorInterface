@@ -34,7 +34,7 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.16'
-		runtime 'com.nolanlawson.relatedness:relatedness-calculator:0.0.1-SNAPSHOT'
+		runtime 'com.nolanlawson.relatedness:relatedness-calculator:0.0.2-SNAPSHOT'
 		runtime 'com.google.guava:guava:r09'
     }
 

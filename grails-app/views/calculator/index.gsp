@@ -155,8 +155,25 @@ p {
 			</div>
 		<span id="result"> <g:if test="${result}">
 				<g:if test="${result.failed}">
-						<p>Whoops! Nothing found for <strong> ${params.q}</strong>. Could you try re-phrasing it?</p>
-					<p>(Error: ${result.errorMessage})</p>
+				    <g:if test="${result.parseError == 'Ambiguity' }">
+				        <p>"${params.q}" is ambiguous. <br/><strong>Did you mean...</strong>
+				        <ul>
+				            <g:each in="${result.alternateQueries}">
+				                <li><g:link params="[q: it]">
+				                        ${it}
+				                    </g:link>
+				                </li>
+				            </g:each>
+				        </ul>
+				        </p>
+				    </g:if>
+				    <g:elseif test="${result.parseError == 'StepRelation'}">
+                        <p>You are not biologically related to <strong>in-laws</strong> and <strong>step-relations</strong>.</p>
+				    </g:elseif>
+				    <g:else>
+                        <p>Whoops! Nothing found for <strong> ${params.q}</strong>. Could you try re-phrasing it?</p>
+                        <p>(Error: ${result.errorMessage})</p>				    
+				    </g:else>
 				</g:if>
 				<g:else>
 						<p>Result for <strong> ${params.q}</strong>

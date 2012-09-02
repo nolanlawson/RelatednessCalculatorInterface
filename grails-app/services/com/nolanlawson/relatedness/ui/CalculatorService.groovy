@@ -9,7 +9,8 @@ import com.google.common.base.Function
 import com.google.common.collect.MapMaker
 import com.nolanlawson.relatedness.parser.RelativeNameParser
 import com.nolanlawson.relatedness.RelatednessCalculator
-import com.nolanlawson.relatedness.RelationAndGraph
+import com.nolanlawson.relatedness.parser.ParseError
+import com.nolanlawson.relatedness.parser.RelationParseResult
 
 class CalculatorService {
 
@@ -73,13 +74,7 @@ class CalculatorService {
 	// return everything but the graph
     def calculate(String query) {
 		def result = graphCache.get(query.trim().toLowerCase());
-		return [
-			failed : result.failed,
-			errorMessage : result.errorMessage,
-			coefficient : result.coefficient,
-			degree : result.degree,
-			graphWidth : result.graphWidth
-			];
+		return result.cloneWithoutGraph();
     }
 
 	// return just the graph	
@@ -95,23 +90,38 @@ class CalculatorService {
 	 * Draw a graph and calculate for the given query
 	 */
 	def generateResultWithoutCaching(String query) {
-		RelationAndGraph relationAndGraph;
+		RelationParseResult relationParseResult;
 		try {
-			relationAndGraph = RelativeNameParser.parse(query, true)
+			relationParseResult = RelativeNameParser.parse(query, true)
 		} catch (Exception e) { // relation exception
 			return new RelatednessResult(
 				failed : true,
 				errorMessage : e.message);
 		}
 		
+		// if there is ambiguity, give the user a chance to recover
+		if (relationParseResult.parseError == ParseError.Ambiguity) {
+			System.out.println("ambiguous!!");
+			return new RelatednessResult(
+				failed : true,
+				parseError : relationParseResult.parseError.toString(),
+				alternateQueries : relationParseResult.ambiguityResolutions
+				)
+		} else if (relationParseResult.parseError == ParseError.StepRelation) {
+			return new RelatednessResult(
+				failed : true,
+				parseError :  relationParseResult.parseError.toString(),
+				)
+		}
+		
 		// convert to xdot format
-		def graph = convertGraphToXdotFormat(relationAndGraph.graph.drawGraph());
+		def graph = convertGraphToXdotFormat(relationParseResult.graph.drawGraph());
 		
 		// find the pixel width
 		def graphWidth = Integer.parseInt((graph =~ ~/b="0,0,(\d+),/)[0][1])
 		
 		// calculate the Relatedness from the Relation
-		def relatedness = RelatednessCalculator.calculate(relationAndGraph.relation);
+		def relatedness = RelatednessCalculator.calculate(relationParseResult.relation);
 		
 		return new RelatednessResult(
 				graph: graph,
