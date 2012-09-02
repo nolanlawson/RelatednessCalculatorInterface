@@ -53,6 +53,7 @@ class CalculatorController {
 		def info = [
 			remoteAddr : request.getRemoteAddr(),
 			forwardedFor : request.getHeader("X-Forwarded-For"),
+			userAgent : request.getHeader("User-Agent"),
 			clientIp : request.getHeader("Client-IP"),
 			sessionId : RequestContextHolder.getRequestAttributes()?.getSessionId(),
 			referer : request.getHeader('referer'),
