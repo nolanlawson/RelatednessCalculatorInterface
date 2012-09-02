@@ -3,6 +3,10 @@ modules = {
         resource url:'js/application.js'
     }
 	
+	drawcanviz {
+		resource url:'js/drawcanviz.js'
+	}
+	
 	canviz {
 		dependsOn 'excanvas,path,prototype'
 		resource url:'js/canviz/canviz.js'

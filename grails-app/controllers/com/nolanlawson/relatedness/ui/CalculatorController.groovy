@@ -16,10 +16,11 @@ class CalculatorController {
 	
     def index() { 
 	
+		logUserQuery();
+		
 		if (!params.q) {
 			return [exampleRelations: calculatorService.createExampleRelationMappings()]
 		} else {
-			logUserQuery(params.q);
 			return [exampleRelations: calculatorService.createExampleRelationMappings(), 
 				result : calculatorService.calculate(cleanQuery(params.q)),
 				escapedQuery : URLEncoder.encode(params.q,'UTF-8') ]
@@ -48,7 +49,7 @@ class CalculatorController {
 		render text: text, contentType: 'text/plain', template: null
 	}
 	
-	def logUserQuery(query) {
+	def logUserQuery() {
 		// log the query just in case I want to grep through it later
 		def info = [
 			remoteAddr : request.getRemoteAddr(),
