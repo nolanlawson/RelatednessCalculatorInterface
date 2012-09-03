@@ -78,8 +78,8 @@
 				</g:if>
 				<g:else>
 						<p>Result for <strong> ${params.q}</strong>
-					<br />Relatedness coefficient: ${new java.text.DecimalFormat('0.############').format(result.coefficient * 100)}%
-						<br />Degree of relation: ${result.degree}
+					<br />Relatedness coefficient: <b>${new java.text.DecimalFormat('0.############').format(result.coefficient * 100)}%</b>
+						<br />Degree of relation: <b>${result.degree}</b>
 						</p>
 					<br />
 				</g:else>
