@@ -47,8 +47,8 @@ environments {
 	}
 	development {
 		//Completely disable css and/or js processor
-		grails.resources.mappers.yuicssminify.disable=true
-		grails.resources.mappers.yuijsminify.disable=true		
+		grails.resources.mappers.yuicssminify.disable=false
+		grails.resources.mappers.yuijsminify.disable=false		
 	}
 }
 
