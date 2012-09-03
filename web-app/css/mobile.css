@@ -82,6 +82,9 @@
 	#github_ribbon img {
 		max-width : 22.5%
 	}
+	#logo img {
+	    max-width : 100%
+	}
 	
 	#page-body p {
 		line-height: 1.2em;

@@ -20,7 +20,7 @@
 	</head>
 	<body>
 		<div id="logo" class="header" role="banner">
-			<h1><a href="${request.contextPath}">Relatedness Calculator</a></h1>
+			<img src="${resource(dir: 'images', file: 'banner.png')}" width="710" height="55"/>
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
