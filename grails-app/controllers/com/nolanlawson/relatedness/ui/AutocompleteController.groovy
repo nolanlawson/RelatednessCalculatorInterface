@@ -6,7 +6,11 @@ class AutocompleteController {
 	
     def index() { 
 		
-		def suggestions = autocompleteService.suggest(params.query?:params.q);
+		def query = params.query?:params.q;
+		
+		def suggestions = (!query || query == '') ?
+			[] :
+			autocompleteService.suggest(query);
 		
 		render (contentType: "text/xml") {
 			

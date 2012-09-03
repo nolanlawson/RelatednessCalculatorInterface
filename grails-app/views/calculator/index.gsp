@@ -32,8 +32,10 @@
 			English. For instance, you can type "brother," "mom's cousin," or
 			"grandpa's cousin's daughter."</p>
 
-		<h2>Enter relative:</h2>
+
+        <div id="input-box-area">
 		<div id="entry-form"">
+		    <h2>Enter relative:</h2><br/>
 			<g:form id="mainform" action="index" method="GET">
 				<g:if test="${params.example}">
 				    <richui:autoComplete id="relation-input" name="q" 
@@ -53,7 +55,7 @@
 		<div id="result"> <g:if test="${result}">
 				<g:if test="${result.failed}">
 				    <g:if test="${result.parseError == 'Ambiguity' }">
-				        <p>"${params.q}" is ambiguous. <br/><strong>Did you mean...</strong>
+				        <p><strong>${params.q}</strong> is ambiguous. <strong>It can mean...</strong>
 				        <ul>
 				            <g:each in="${result.alternateQueries}">
 				                <li><g:link params="[q: it]">
@@ -78,16 +80,19 @@
 						<br />Degree of relation: ${result.degree}
 						</p>
 					<br />
-					<div id="graph_container_outer">
-						<div id="spinner">
-							<g:img dir="images" file="spinner.gif" width="16" height="16"/>
-						</div>
-						<div id="graph_container"></div>
-					</div>
-					<div id="debug_output"></div>
 				</g:else>
 			</g:if>
 		</div>
+		</div>
+		<g:if test="${result && !result.failed}">
+			<div id="graph_container_outer">
+				<div id="spinner">
+					<g:img dir="images" file="spinner.gif" width="16" height="16" />
+				</div>
+				<div id="graph_container"></div>
+			</div>
+		</g:if>
+		<div id="debug_output"></div>
 		<div id="explanation">
 		<g:if test="${result && !result.failed}">
 			<h2>Explanation:</h2>
