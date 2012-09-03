@@ -29,6 +29,8 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
                     ]
 
 //The following options apply to YUI JS Minifier only
+grails.resources.mappers.yuicssminify.excludes = ['**/*-min.css']
+grails.resources.mappers.yuijsminify.excludes = ['**/*-min.js']
 
 environments {
 	production {
