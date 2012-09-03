@@ -6,15 +6,7 @@
 <g:if test="${result && !result.failed}">${params.q} - </g:if>Relatedness Calculator
 </title>
 
-<!-- I should be using 
 <resource:include components="autoComplete" autoComplete="[skin: 'default']" />
- instead of the following, but for some reason it causes 302 redirects because it doens't go directly to /static/... weird-->
- <link rel='stylesheet' type='text/css' href='/relatedness-calculator/static/plugins/richui-0.8/css/autocomplete.css' />
- <script type='text/javascript' src='${request.contextPath}/static/plugins/richui-0.8/js/yui/yahoo-dom-event/yahoo-dom-event.js'></script>
- <script type='text/javascript' src='${request.contextPath}/static/plugins/richui-0.8/js/yui/connection/connection-min.js'></script>
- <script type='text/javascript' src='${request.contextPath}/static/plugins/richui-0.8/js/yui/datasource/datasource-min.js'></script>
- <script type='text/javascript' src='${request.contextPath}/static/plugins/richui-0.8/js/yui/animation/animation-min.js'></script>
- <script type='text/javascript' src='${request.contextPath}/static/plugins/richui-0.8/js/yui/autocomplete/autocomplete-min.js'></script>
 </head>
 <body>
 	<a href="#page-body" class="skip"><g:message
