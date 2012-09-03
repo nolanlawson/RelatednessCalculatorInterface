@@ -21,8 +21,10 @@
 			</g:each>
 		</ul>
 	</div>
+
 	<div id="page-body" role="main">
 		<h1>Welcome to the Relatedness Calculator</h1>
+		     <g:if test="${!result || result.failed }">
 		<p>
 			Wondering how likely your nephew is to "take after" you? Or if it
 			would be weird to date that cute distant cousin you met at the family
@@ -32,7 +34,7 @@
 			English. For instance, you can type "brother," "mom's cousin," or
 			"grandpa's cousin's daughter."</p>
 
-
+        </g:if>
         <div id="input-box-area">
 		<div id="entry-form"">
 		    <h2>Enter relative:</h2><br/>
