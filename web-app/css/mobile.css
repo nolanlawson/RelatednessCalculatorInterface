@@ -83,7 +83,7 @@
 		max-width : 22.5%
 	}
 	#logo img {
-	    max-width : 100%
+	    max-width : 140%
 	}
 	
 	#page-body p {
@@ -95,6 +95,16 @@
 		font-size: 1em;
 		line-height : 1.2em;
 	}
+	
+	.yui-ac {
+	    float: left;
+	    width: 60%;
+	}
+	
+	#input-box-area {
+    margin : 1em 0.5em 1em 0.5em;
+    padding : 0.25em 0.5em 1em 0.5em;
+    }
 	
 	.footer {
 		font-size: 0.6em;
