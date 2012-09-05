@@ -32,6 +32,9 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
 grails.resources.mappers.yuicssminify.excludes = ['**/*-min.css']
 grails.resources.mappers.yuijsminify.excludes = ['**/*-min.js']
 
+//Get richui stuff from Yahoo's servers instead of mine.  They run faster servers than I do.
+richui.serve.resource.files.remote=true
+
 environments {
 	production {
 		//Completely disable css and/or js processor
