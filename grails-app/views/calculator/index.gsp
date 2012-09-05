@@ -39,7 +39,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			Ask the <strong>relatedness calculator</strong>.
 		</p>
 		<p>Just enter the name of a relative in plain
-			English. For instance, you can enter <strong>brother</strong>, <strong>mom's cousin</strong>, or even
+			English. For instance, you can type <strong>brother</strong>, <strong>mom's cousin</strong>, or even
 			<strong>grandpa's cousin's daughter</strong>.</p>
         </div>
         </g:if>
@@ -50,7 +50,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			    <richui:autoComplete id="relation-input" name="q" 
                         action="${createLinkTo('dir': 'autocomplete')}" 
                         onItemSelect="document.forms[0].submit();"
-                        value="${!params.example ? params.q : ''}"/>
+                        value="${params.q ?: ''}"/>
 				<div id="formbox">
 				    <input type="submit" value="Calculate" />
 				</div>
@@ -58,22 +58,28 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			</div>
 		<div id="result"> <g:if test="${result}">
 				<g:if test="${result.failed}">
-				    <g:if test="${result.parseError == 'Ambiguity' }">
-				        <p><strong>${params.q}</strong> is ambiguous. <strong>It can mean...</strong>
-				        <ul>
-				            <g:each in="${result.alternateQueries}">
-				                <li><g:link params="[q: it]">
-				                        ${it}
-				                    </g:link>
-				                </li>
-				            </g:each>
-				        </ul>
-				        </p>
-				    </g:if>
-				    <g:elseif test="${result.parseError == 'StepRelation'}">
-                        <p>You are not biologically related to <strong>in-laws</strong> and <strong>step-relations</strong>.</p>
-				    </g:elseif>
+				    <g:if test="${result.parseError }">
+				        <g:img class="info-icon" dir="images" file="get-info.png" width="32" height="32"/>
+					    <g:if test="${result.parseError == 'Ambiguity' }">
+					        <p><strong>${params.q}</strong> is ambiguous. <strong>It can mean...</strong>
+					        </p>
+					        <p>
+				               <ul>
+	                               <g:each in="${result.alternateQueries}">
+	                                   <li><g:link params="[q: it]">
+	                                           ${it}
+	                                       </g:link>
+	                                   </li>
+	                               </g:each>
+	                           </ul>
+	                        </p>
+					    </g:if>
+					    <g:elseif test="${result.parseError == 'StepRelation'}">
+	                        <p>You are not biologically related to <strong>in-laws</strong> and <strong>step-relations</strong>.</p>
+					    </g:elseif>
+					</g:if>
 				    <g:else>
+				        <g:img class="info-icon" dir="images" file="frown-icon.png" width="32" height="32"/>
                         <p>Whoops! Nothing found for <strong> ${params.q}</strong>. Could you try re-phrasing it?</p>
                         <p>(Error: ${result.errorMessage})</p>				    
 				    </g:else>

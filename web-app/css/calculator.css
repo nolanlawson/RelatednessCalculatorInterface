@@ -89,6 +89,11 @@ p {
 	padding-top: 1em;
 }
 
+img.info-icon {
+    float: left;
+    margin-right : 0.5em
+}
+
 #graph_container {
 	margin: auto
 }
