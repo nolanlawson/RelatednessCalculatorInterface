@@ -5,6 +5,7 @@ import com.nolanlawson.relatedness.autosuggest.RelationSuggester
 class AutocompleteService {
 
 	static final int MAX_NUM_SUGGESTIONS = 10;
+        static transactional = false;
 	
 	RelationSuggester relationSuggester =  new RelationSuggester();
 	
