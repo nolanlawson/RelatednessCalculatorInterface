@@ -5,8 +5,12 @@
 <title>
 <g:if test="${result && !result.failed}">${params.q} - </g:if>Relatedness Calculator
 </title>
-
-<resource:include components="autoComplete" autoComplete="[skin: 'default']" />
+<%-- it appears specifying skin : null fixes a 302 redirect where the app would normally redirect from a non-static
+to a static CSS file.  Adding it here gives us http://yui.yahooapis.com/2.8.0/build/autocomplete/assets/skins/sam/autocomplete.css,
+which I just override anyway using my own richui_autocomplete.css.  It's a hack, and it downloads an unnecessary CSS file from Yahoo,
+but it avoids unnecessary redirects caused by what is apparently a bug in the richui plugin. --%>
+<resource:include components="autoComplete" autoComplete="[skin: null]"/>
+<link rel="stylesheet" href="${resource(dir: 'css', file: 'richui_autocomplete.css')}" type="text/css">
 </head>
 <body>
 	<a href="#page-body" class="skip"><g:message
@@ -208,8 +212,7 @@
 		</a>
 	</div>
 
-	<!--  execute all the graph-drawing code only after the page has loaded,
-	and only if necessary -->
+	<%--  execute all the graph-drawing code only after the page has loaded, and only if necessary --%>
 	<g:if test="${result && !result.failed}">
 		<g:javascript library="path" />
 		<g:javascript library="prototype" />
