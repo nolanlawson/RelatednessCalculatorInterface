@@ -1,6 +1,6 @@
 /* Styles for mobile devices */
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 720px) {
 	.nav {
 		padding: 0.5em;
 	}
@@ -83,12 +83,23 @@
 		max-width : 22.5%
 	}
 	#logo img {
-	    max-width : 140%
+        display: block;
+        width: 100%;
+        height: auto;
 	}
+	
+	h2 {
+        margin-top: 0.5em;
+        margin-bottom: 0.1em;
+        font-size: 1m;
+    }
+    #explanation ul {
+        font-size: 0.8em
+    }
 	
 	#page-body p {
 		line-height: 1.2em;
-		font-size: 0.9em;
+		font-size: 0.8em;
 	}
 	
 	#page-body h1 {
@@ -98,7 +109,12 @@
 	
 	.yui-ac {
 	    float: left;
-	    width: 60%;
+	    width: 100%;
+	    margin-bottom: 1em;
+	}
+	
+	#formbox {
+	    text-align : center;
 	}
 	
 	#input-box-area {

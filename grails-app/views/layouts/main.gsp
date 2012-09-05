@@ -20,7 +20,7 @@
 	</head>
 	<body>
 		<div id="logo" class="header" role="banner">
-			<a href="${request.contextPath}"><g:img dir="images" file="banner.png" width="710" height="55"/></a>
+			<a href="${request.contextPath}"><g:img dir="images" file="banner.png" width="606" height="55"/></a>
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">

@@ -25,6 +25,7 @@
 	<div id="page-body" role="main">
 		<h1>Welcome to the Relatedness Calculator</h1>
 		     <g:if test="${!result || result.failed }">
+		<div id="introductory-text">
 		<p>
 			Ever wondered how you're related to your 
 			<g:link params="[q: 'half-cousin', example: true]">half-cousin</g:link>?
@@ -36,25 +37,19 @@
 		<p>Just enter the name of a relative in plain
 			English. For instance, you can enter <strong>brother</strong>, <strong>mom's cousin</strong>, or even
 			<strong>grandpa's cousin's daughter</strong>.</p>
-
+        </div>
         </g:if>
         <div id="input-box-area">
 		<div id="entry-form"">
 		    <h2>Enter relative:</h2><br/>
 			<g:form id="mainform" action="index" method="GET">
-				<g:if test="${params.example}">
-				    <richui:autoComplete id="relation-input" name="q" 
-				        action="${createLinkTo('dir': 'autocomplete')}" 
-				        onItemSelect="document.forms[0].submit();"/>
-				</g:if>
-				<g:else>
-				    <richui:autoComplete id="relation-input" name="q" 
+			    <richui:autoComplete id="relation-input" name="q" 
                         action="${createLinkTo('dir': 'autocomplete')}" 
                         onItemSelect="document.forms[0].submit();"
-                        value="${params.q }"/>
-                        <!-- value="${params.q }" -->
-				</g:else>
-				<input type="submit" value="Calculate" />
+                        value="${!params.example ? params.q : ''}"/>
+				<div id="formbox">
+				    <input type="submit" value="Calculate" />
+				</div>
 			</g:form>
 			</div>
 		<div id="result"> <g:if test="${result}">
@@ -222,10 +217,12 @@
 		<g:javascript library="canviz" />
 		<g:javascript library="drawcanviz"/>
 		<g:javascript>
+		
 			function drawGraph() {
 				drawCanviz(${result.graphWidth}, "${escapedQuery}");
 			}
-			window.onload=drawGraph;
+			window.onload=drawGraph;		
+			
 		</g:javascript>
 	</g:if>
 </body>
