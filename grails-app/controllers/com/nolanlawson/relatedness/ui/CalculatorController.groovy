@@ -22,7 +22,7 @@ class CalculatorController {
 			return [exampleRelations: calculatorService.createExampleRelationMappings()]
 		} else {
 			return [exampleRelations: calculatorService.createExampleRelationMappings(), 
-				result : calculatorService.calculate(cleanQuery(params.q)),
+				result : calculatorService.calculate(QueryUtils.cleanQuery(params.q)),
 				escapedQuery : URLEncoder.encode(params.q,'UTF-8') ]
 		}
 	}
@@ -45,7 +45,7 @@ class CalculatorController {
 	 * @return
 	 */
 	def generateGraph() {
-		String text = calculatorService.generateGraph(cleanQuery(params.q)) ?: 'error'
+		String text = calculatorService.generateGraph(QueryUtils.cleanQuery(params.q)) ?: 'error'
 		render text: text, contentType: 'text/plain', template: null
 	}
 	
@@ -63,11 +63,4 @@ class CalculatorController {
 		log.info(info as JSON)
 	}
 	
-	def cleanQuery(query) {
-		query = query ?: "";
-		query = query.trim().replace('+', ' ').replaceAll(~/\s+/, ' ').toLowerCase()
-		
-		// I assume people will be tempted to add "my", "your", etc.
-		return query.replaceFirst(~/^(?:my|your|the)\s+/,'')
-	}
 }

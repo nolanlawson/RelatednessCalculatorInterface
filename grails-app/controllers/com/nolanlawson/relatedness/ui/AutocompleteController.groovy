@@ -10,7 +10,7 @@ class AutocompleteController {
 		
 		def suggestions = (!query || query == '') ?
 			[] :
-			autocompleteService.suggest(query);
+			autocompleteService.suggest(QueryUtils.cleanQuery(query));
 		
 		render (contentType: "text/xml") {
 			
