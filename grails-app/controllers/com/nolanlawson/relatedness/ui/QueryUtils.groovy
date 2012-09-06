@@ -17,7 +17,7 @@ public class QueryUtils {
 	
 	// I assume people will be tempted to enter reciprocal relations as plurals, e.g.
 	// "cousins" instead of "cousin"
-	static final Pattern RECIPROCAL_PLURALS = ~/(cousin|twin|brother|sister)s/
+	static final Pattern RECIPROCAL_PLURALS = ~/(cousin|twin|brother|sister|child)(?:s|ren)/
 	
 	static final Pattern SPACES = ~/\s+/
 	

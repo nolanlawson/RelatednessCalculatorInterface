@@ -140,10 +140,13 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 				    once removed" could be either your 
 				    <g:link url="?q=second cousin's child&example=true">second cousin's child</g:link>
 				    or your <g:link url="?q=parent's second cousin&example=true">parent's second cousin</g:link>.
-				<li>Fraternal twins have the same relatedness coefficient as
-					regular siblings (50%), but identical twins share 100% of their
-					genes. So you're as closely related to your identical twin's
-					children (50%) as to your own children (50%)!</li>
+				<li><g:link url="?q=fraternal twins&example=true">Fraternal twins</g:link>
+				    have the same relatedness coefficient as
+					regular siblings (50%), but 
+					<g:link url="?q=identical twins&example=true">identical twins</g:link> share 100% of their
+					genes. So you're as closely related to your 
+					<g:link url="?q=identical twin's children&example=true">identical twin's
+					children</g:link> (50%) as to your own children (50%)!</li>
 				<li>If there has been incest in your ancestry, you can
 					calculate your relatedness coefficient to other family members by
 					adding in any extra coefficients due to the incest. For instance,
