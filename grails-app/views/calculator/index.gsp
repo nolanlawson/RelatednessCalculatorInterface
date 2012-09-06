@@ -239,16 +239,10 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			    <g:javascript>
 				(function($){ 
 				   $(window).load(function(){
-				                      
-				                 $('#relation-input').on('focus',function(){
+				                 $('#relation-input').focus(function(){
 				                     $('#introductory-text').hide();
-				                     // have to return the focus 
-				                     $('#relation-input').focus();   
 				                 });
 				                 
-				                 $('#relation-input').on('blur',function(){
-				                      $('#introductory-text').show(); 
-				                 });
 				    })
 		         })(jQuery);
 		    </g:javascript>
