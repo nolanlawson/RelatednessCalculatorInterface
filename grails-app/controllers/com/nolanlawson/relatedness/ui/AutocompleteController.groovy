@@ -16,11 +16,11 @@ class AutocompleteController {
 			
 			results() {
 				suggestions.each { suggestion ->
-				result(){
-					name(suggestion)
-				}
-			}
-				}
+					result(){
+						name(suggestion)
+					}
+			    }
+		    }
 		};
 	}
 }

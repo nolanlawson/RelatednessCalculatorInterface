@@ -217,7 +217,6 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub">
 		</a>
 	</div>
-
 	<%--  execute all the graph-drawing code only after the page has loaded, and only if necessary --%>
 	<g:if test="${result && !result.failed}">
 		<g:javascript library="path" />
@@ -230,9 +229,30 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			function drawGraph() {
 				drawCanviz(${result.graphWidth}, "${escapedQuery}");
 			}
-			window.onload=drawGraph;		
-			
+			window.onload=drawGraph;
 		</g:javascript>
 	</g:if>
+	<g:else>
+		<browser:isMobile>
+			<%--  else if we're dealing with a mobile user, make sure to hide the introductory text when the focus
+			      is on the input.  That way they can still use the autocomplete. --%>
+			    <g:javascript>
+				(function($){ 
+				   $(window).load(function(){
+				                      
+				                 $('#relation-input').on('focus',function(){
+				                     $('#introductory-text').hide();
+				                     // have to return the focus 
+				                     $('#relation-input').focus();   
+				                 });
+				                 
+				                 $('#relation-input').on('blur',function(){
+				                      $('#introductory-text').show(); 
+				                 });
+				    })
+		         })(jQuery);
+		    </g:javascript>
+	    </browser:isMobile>
+	</g:else>
 </body>
 </html>
