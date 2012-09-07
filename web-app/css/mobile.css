@@ -87,7 +87,9 @@
         width: 100%;
         height: auto;
 	}
-	
+	.explanation-title {
+	    width: 100%;
+	}	
 	h2 {
         margin-top: 0.5em;
         margin-bottom: 0.1em;

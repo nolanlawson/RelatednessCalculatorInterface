@@ -134,7 +134,7 @@ img {
 	text-decoration: none;
 }
 
-#input-box-area {
+.gray-box-background {
     background : #EEE;
     margin : 1em 3em 1em 3em;
     padding : 0.25em 3em 1em 3em;
@@ -144,6 +144,16 @@ img {
     -moz-border-radius: 0.6em;
     -webkit-border-radius: 0.6em;
     border-radius: 0.6em;
+}
+
+.explanation-title {
+	text-align:center;
+	padding:0.5em 0em 0em 0em;
+	width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2.5em;
+	margin-bottom: 1.5em;
 }
 
 .yui-ac {

@@ -21,8 +21,10 @@ class CalculatorController {
 		if (!params.q) {
 			return [exampleRelations: calculatorService.createExampleRelationMappings()]
 		} else {
+		    def cleanedQuery = QueryUtils.cleanQuery(params.q);
 			return [exampleRelations: calculatorService.createExampleRelationMappings(), 
-				result : calculatorService.calculate(QueryUtils.cleanQuery(params.q)),
+				result : calculatorService.calculate(cleanedQuery),
+				cleanedQuery : cleanedQuery,
 				escapedQuery : URLEncoder.encode(params.q,'UTF-8') ]
 		}
 	}

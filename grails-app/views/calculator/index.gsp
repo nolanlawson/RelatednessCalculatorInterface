@@ -9,8 +9,12 @@
 to a static CSS file.  Adding it here gives us http://yui.yahooapis.com/2.8.0/build/autocomplete/assets/skins/sam/autocomplete.css,
 which I just override anyway using my own richui_autocomplete.css.  It's a hack, and it downloads an unnecessary CSS file from Yahoo,
 but it avoids unnecessary redirects caused by what is apparently a bug in the richui plugin. --%>
-<resource:include components="autoComplete" autoComplete="[skin: null]"/>
+<resource:include components="autoComplete, font" autoComplete="[skin: null]"/>
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'richui_autocomplete.css')}" type="text/css">
+<g:set var="titleFontSize" value="22" />
+<g:set var="titleFontColor" value="#333333" />
+<g:set var="titleFont" value="moderna" />
+
 </head>
 <body>
 	<a href="#page-body" class="skip"><g:message
@@ -43,7 +47,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			<strong>grandpa's cousin's daughter</strong>.</p>
         </div>
         </g:if>
-        <div id="input-box-area">
+        <div id="input-box-area" class="gray-box-background">
 		<div id="entry-form"">
 		    <h2>Enter relative:</h2><br/>
 			<g:form id="mainform" action="index" method="GET">
@@ -105,17 +109,31 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 		<div id="debug_output"></div>
 		<div id="explanation">
 		<g:if test="${result && !result.failed}">
-			<h2>Explanation:</h2>
+		    <div class="gray-box-background explanation-title">
+                <%-- initially used richui:font to generate the images; now I keep them so they can be cached on the client side --%>
+                <%--richui:font text="Explanation" fontName="${titleFont}" color="${titleFontColor}" size="${titleFontSize}" /--%>
+                <g:img dir="images" file="richui_font_explanation.png"/>
+            </div>
 			<p>
-				The relatedness between two people is expressed with two measures:
-			<ul>
-				<li><b>Relatedness coefficient:</b> what percentage of your
-					genes you share.</li>
-				<li><b>Degree of relation:</b> how far you are from that person
-					in your family tree.</li>
+			    The relatedness between two people is expressed with two measures:
 			</p>
-			</ul>
-			<h2>Fun Facts:</h2>
+			<ul>
+				<li><strong>Relatedness coefficient:</strong> what percentage of your
+					genes you share.</li>
+				<li><strong>Degree of relation:</strong> how far you are from that person
+					in your family tree.</li>
+		    </ul>
+			<p>
+			    So, your <strong>${cleanedQuery}</strong> 
+			    is <strong>${new java.text.DecimalFormat('0.############').format(result.coefficient * 100)}%</strong> related to you 
+			    and <strong>${result.degree}</strong> steps removed on your family tree.</strong>
+			</p>
+			<p/>
+            <div class="gray-box-background explanation-title">
+                <%--richui:font text="Fun Facts" fontName="${titleFont}" color="${titleFontColor}" size="${titleFontSize}" /--%>
+                <g:img dir="images" file="richui_font_funfacts.png"/>
+            </div>
+            <p>Did you know...</p>
 			<ul>
 				<li>The curious case of <g:link params='[q:"double cousin"]'>double cousins</g:link>
 					occurs when two siblings from one family each marry two siblings
@@ -134,7 +152,8 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 						Manhattan</a>.
 				</li>
 				<li>In terms of relatedness, you are just as likely to "take
-					after" your uncle (25%) as your grandfather (25%).</li>
+					after" your <g:link url="?q=uncle&example=true">uncle</g:link> (25%) 
+					as your <g:link url="?q=grandfather&example=true">grandfather</g:link> (25%).</li>
 				<li>"Once removed," "twice removed," etc. refers to the distance up or down
 				    your family tree relative to a cousin.  For instance, a "second cousin,
 				    once removed" could be either your 
@@ -163,7 +182,10 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 					himself.
 				</li>
 			</ul>
-			<h2>Nerdy Stuff:</h2>
+            <div class="gray-box-background explanation-title">
+                <%--richui:font text="Nerdy Stuff" fontName="${titleFont}" color="${titleFontColor}" size="${titleFontSize}" /--%>
+                <g:img dir="images" file="richui_font_nerdystuff.png"/>
+            </div>
 				<p>Richard Dawkins gives a great explanation of how to calculate 
 				relatedness coefficients in <i>The
 				Selfish Gene</i>:</p>
