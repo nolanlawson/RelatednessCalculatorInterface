@@ -126,7 +126,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			<p>
 			    So, your <strong>${cleanedQuery}</strong> 
 			    is <strong>${new java.text.DecimalFormat('0.############').format(result.coefficient * 100)}%</strong> related to you 
-			    and <strong>${result.degree}</strong> steps removed on your family tree.</strong>
+			    and <strong>${result.degree}</strong> steps removed from you in your family tree.</strong>
 			</p>
 			<p/>
             <div class="gray-box-background explanation-title">
