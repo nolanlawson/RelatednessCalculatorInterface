@@ -18,6 +18,7 @@
 		<g:javascript library="jquery" />
 		<g:layoutHead/>
         <r:layoutResources />
+        <ga:trackPageview />
 	</head>
 	<body>
 		<div id="logo" class="header" role="banner">
@@ -35,5 +36,6 @@
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
         <r:layoutResources />
+        <!-- Relatedness Calculator v<g:meta name="app.version"/> -->
 	</body>
 </html>

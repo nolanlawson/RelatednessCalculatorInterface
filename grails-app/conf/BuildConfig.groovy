@@ -43,6 +43,8 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.7.1"
         runtime ":resources:1.1.6"
 		compile ":richui:0.8"
+		compile ":google-analytics:2.0"
+		
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"

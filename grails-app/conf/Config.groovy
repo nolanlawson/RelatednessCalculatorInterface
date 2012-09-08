@@ -35,6 +35,9 @@ grails.resources.mappers.yuijsminify.excludes = ['**/*-min.js']
 //Get richui stuff from Yahoo's servers instead of mine.  They run faster servers than I do.
 richui.serve.resource.files.remote=true
 
+// Google analytics
+google.analytics.webPropertyID = 'UA-34670749-1'
+
 environments {
 	production {
 		//Completely disable css and/or js processor

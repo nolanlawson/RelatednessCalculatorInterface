@@ -14,7 +14,6 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 <g:set var="titleFontSize" value="22" />
 <g:set var="titleFontColor" value="#333333" />
 <g:set var="titleFont" value="moderna" />
-
 </head>
 <body>
 	<a href="#page-body" class="skip"><g:message
