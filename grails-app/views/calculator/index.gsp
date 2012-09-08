@@ -63,7 +63,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 		<div id="result"> <g:if test="${result}">
 				<g:if test="${result.failed}">
 				    <g:if test="${result.parseError }">
-				        <g:img class="info-icon" dir="images" file="get-info.png" width="32" height="32"/>
+				        <g:img alt="info" class="info-icon" dir="images" file="get-info.png" width="32" height="32"/>
 					    <g:if test="${result.parseError == 'Ambiguity' }">
 					        <p><strong>${params.q}</strong> is ambiguous. <strong>It can mean...</strong>
 					        </p>
@@ -83,7 +83,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 					    </g:elseif>
 					</g:if>
 				    <g:else>
-				        <g:img class="info-icon" dir="images" file="frown-icon.png" width="32" height="32"/>
+				        <g:img alt="frowny face" class="info-icon" dir="images" file="frown-icon.png" width="32" height="32"/>
                         <p>Whoops! Nothing found for <strong> ${params.q}</strong>. Could you try re-phrasing it?</p>
                         <p>(Error: ${result.errorMessage})</p>				    
 				    </g:else>
@@ -101,7 +101,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 		<g:if test="${result && !result.failed}">
 			<div id="graph_container_outer">
 				<div id="spinner">
-					<g:img dir="images" file="spinner.gif" width="16" height="16" />
+					<g:img alt="spinner" dir="images" file="spinner.gif" width="16" height="16" />
 				</div>
 				<div id="graph_container"></div>
 			</div>
@@ -112,7 +112,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 		    <div class="gray-box-background explanation-title">
                 <%-- initially used richui:font to generate the images; now I keep them so they can be cached on the client side --%>
                 <%--richui:font text="Explanation" fontName="${titleFont}" color="${titleFontColor}" size="${titleFontSize}" /--%>
-                <g:img dir="images" file="richui_font_explanation.png"/>
+                <g:img alt="Explanation" dir="images" file="richui_font_explanation.png"/>
             </div>
 			<p>
 			    The relatedness between two people is expressed with two measures:
@@ -126,12 +126,12 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			<p>
 			    So, your <strong>${cleanedQuery}</strong> 
 			    is <strong>${new java.text.DecimalFormat('0.############').format(result.coefficient * 100)}%</strong> related to you 
-			    and <strong>${result.degree}</strong> steps removed from you in your family tree.</strong>
+			    and <strong>${result.degree}</strong> ${result.degree > 1 ? 'steps' : 'step'} removed from you in your family tree.</strong>
 			</p>
 			<p/>
             <div class="gray-box-background explanation-title">
                 <%--richui:font text="Fun Facts" fontName="${titleFont}" color="${titleFontColor}" size="${titleFontSize}" /--%>
-                <g:img dir="images" file="richui_font_funfacts.png"/>
+                <g:img alt="Fun Facts" dir="images" file="richui_font_funfacts.png"/>
             </div>
             <p>Did you know...</p>
 			<ul>
@@ -184,7 +184,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 			</ul>
             <div class="gray-box-background explanation-title">
                 <%--richui:font text="Nerdy Stuff" fontName="${titleFont}" color="${titleFontColor}" size="${titleFontSize}" /--%>
-                <g:img dir="images" file="richui_font_nerdystuff.png"/>
+                <g:img alt="Nerdy Stuff" dir="images" file="richui_font_nerdystuff.png"/>
             </div>
 				<p>Richard Dawkins gives a great explanation of how to calculate 
 				relatedness coefficients in <i>The
