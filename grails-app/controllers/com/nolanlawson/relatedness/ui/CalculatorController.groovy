@@ -19,10 +19,10 @@ class CalculatorController {
 		logUserQuery();
 		
 		if (!params.q) {
-			return [exampleRelations: calculatorService.createExampleRelationMappings()]
+			return [:]
 		} else {
 		    def cleanedQuery = QueryUtils.cleanQuery(params.q);
-			return [exampleRelations: calculatorService.createExampleRelationMappings(), 
+			return [
 				result : calculatorService.calculate(cleanedQuery),
 				cleanedQuery : cleanedQuery,
 				escapedQuery : URLEncoder.encode(params.q,'UTF-8') ]

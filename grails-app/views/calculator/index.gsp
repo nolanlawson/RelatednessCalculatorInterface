@@ -3,7 +3,9 @@
 <head>
 <meta name="layout" content="main" />
 <title>
-<g:if test="${result && !result.failed}">${params.q} - </g:if>Relatedness Calculator
+<%-- Put the search term in the page title, capitalized, so it shows up nicely in Google --%>
+<g:if test="${result && !result.failed && params.q && params.q.length() > 1}">
+    ${Character.toString(Character.toUpperCase(params.q.charAt(0))) + params.q.substring(1)} - </g:if>Relatedness Calculator
 </title>
 <%-- it appears specifying skin : null fixes a 302 redirect where the app would normally redirect from a non-static
 to a static CSS file.  Adding it here gives us http://yui.yahooapis.com/2.8.0/build/autocomplete/assets/skins/sam/autocomplete.css,
@@ -21,11 +23,28 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 	<div id="sidebar" role="complementary">
 		<h1>Examples</h1>
 		<ul>
-			<g:each in="${exampleRelations}">
-				<li><g:link params="[q: it.key, example: true]">
-						${it.key} (${new java.text.DecimalFormat('0.##').format(it.value*100)}%)
-					</g:link></li>
-			</g:each>
+			<li><g:link params="[q: 'Aunt', example: true]">Aunt (25%)</g:link></li>
+			<li><g:link params="[q: 'Brother', example: true]">Brother (50%)</g:link></li>
+			<li><g:link params="[q: 'Cousin', example: true]">Cousin (12.5%)</g:link></li>
+			<li><g:link params="[q: 'Daughter', example: true]">Daughter (50%)</g:link></li>
+			<li><g:link params="[q: 'Father', example: true]">Father (50%)</g:link></li>
+			<li><g:link params="[q: 'Granddaughter', example: true]">Granddaughter (25%)</g:link></li>
+			<li><g:link params="[q: 'Grandfather', example: true]">Grandfather (25%)</g:link></li>
+			<li><g:link params="[q: 'Grandmother', example: true]">Grandmother (25%)</g:link></li>
+			<li><g:link params="[q: 'Grandson', example: true]">Grandson (25%)</g:link></li>
+			<li><g:link params="[q: 'Great-granddaughter', example: true]">Great-granddaughter (12.5%)</g:link></li>
+			<li><g:link params="[q: 'Great-grandfather', example: true]">Great-grandfather (12.5%)</g:link></li>
+			<li><g:link params="[q: 'Great-grandmother', example: true]">Great-grandmother (12.5%)</g:link></li>
+			<li><g:link params="[q: 'Great-grandson', example: true]">Great-grandson (12.5%)</g:link></li>
+			<li><g:link params="[q: 'Half-brother', example: true]">Half-brother (25%)</g:link></li>
+			<li><g:link params="[q: 'Half-sister', example: true]">Half-sister (25%)</g:link></li>
+			<li><g:link params="[q: 'Mother', example: true]">Mother (50%)</g:link></li>
+			<li><g:link params="[q: 'Nephew', example: true]">Nephew (25%)</g:link></li>
+			<li><g:link params="[q: 'Niece', example: true]">Niece (25%)</g:link></li>
+			<li><g:link params="[q: 'Second Cousin', example: true]">Second Cousin (3.12%)</g:link></li>
+			<li><g:link params="[q: 'Sister', example: true]">Sister (50%)</g:link></li>
+			<li><g:link params="[q: 'Son', example: true]">Son (50%)</g:link></li>
+			<li><g:link params="[q: 'Uncle', example: true]">Uncle (25%)</g:link></li>
 		</ul>
 	</div>
 
@@ -134,7 +153,7 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
             </div>
             <p>Did you know...</p>
 			<ul>
-				<li>The curious case of <g:link params='[q:"double cousin"]'>double cousins</g:link>
+				<li>The curious case of <g:link params='[q:"double cousins"]'>double cousins</g:link>
 					occurs when two siblings from one family each marry two siblings
 					from another family. Double cousins share 25% of their genes
 					&mdash; the same as grandparents/grandchildren and half-siblings.
