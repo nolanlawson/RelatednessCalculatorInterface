@@ -32,33 +32,10 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
 grails.resources.mappers.yuicssminify.excludes = ['**/*-min.css']
 grails.resources.mappers.yuijsminify.excludes = ['**/*-min.js']
 
-//Get richui stuff from Yahoo's servers instead of mine.  They run faster servers than I do.
 richui.serve.resource.files.remote=true
 
 // Google analytics
 google.analytics.webPropertyID = 'UA-34670749-1'
-
-environments {
-	production {
-		//Completely disable css and/or js processor
-		grails.resources.mappers.yuicssminify.disable=false
-		grails.resources.mappers.yuijsminify.disable=false
-		
-		//Minify only, do not obfuscate javascript code
-		grails.resources.mappers.yuijsminify.js.noMunge = false
-		
-		//Preserve all semicolons in javascript files
-		grails.resources.mappers.yuijsminify.js.preserveAllSemicolons = false
-		
-		//Disable all micro optimizations in javascript files
-		grails.resources.mappers.yuijsminify.js.disableOptimizations = false
-	}
-	development {
-		//Completely disable css and/or js processor
-		grails.resources.mappers.yuicssminify.disable=false
-		grails.resources.mappers.yuijsminify.disable=false		
-	}
-}
 
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
@@ -88,6 +65,12 @@ grails.web.disable.multipart=false
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
 
+//
+// YUI Minify Resources plugin config
+//
+grails.resources.mappers.yuijsminify.noMunge = true // this is actually backwards, and should be called "munge"
+grails.resources.mappers.yuijsminify.preserveAllSemicolons = false
+grails.resources.mappers.yuijsminify.disableOptimizations = false
 
 // set per-environment serverURL stem for creating absolute links
 def logDir = "../logs" // points to TOMCAT log directory.
@@ -97,6 +80,7 @@ environments {
        grails.serverURL = "http://localhost:8080/${appName}"
   }
    development {
+       grails.resources.debug = true
        logDir = "./logs" // points to Eclipse project log directory.
        grails.serverURL = "http://localhost:8080/${appName}"
   }

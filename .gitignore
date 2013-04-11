@@ -3,3 +3,5 @@ target-eclipse
 stacktrace.log
 logs
 .DS_Store
+.idea
+*.iml
