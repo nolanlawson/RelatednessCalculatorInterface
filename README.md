@@ -14,8 +14,10 @@ License
 Summary
 ----------
 
-The Relatedness Calculator Interface is a simple tool to help make sense of family
-trees.  Genealogy is interesting stuff, and it's got pretty universal appeal. But it
+A Grails webapp that helps make sense of family
+trees by explaining the relatedness between two individuals.
+
+Genealogy is interesting stuff, and it's got pretty universal appeal. But it
 gets complicated once you start talking about second cousins, half-nephews, and ever
 more distant relations.
 
