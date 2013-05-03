@@ -14,12 +14,14 @@ License
 Summary
 ----------
 
+![Screenshot][5]
+
 A Grails webapp that helps make sense of family
 trees by explaining the relatedness between two individuals.
 
 Genealogy is interesting stuff, and it's got pretty universal appeal. But it
 gets complicated once you start talking about second cousins, half-nephews, and ever
-more distant relations.
+more distant relations.  Try this tool before breaking out the graph paper!
 
 Demo
 -----------
@@ -43,3 +45,4 @@ This code is a Grails frontend to the [Relatedness Calculator][2] Java library.
 [1]: http://sam.zoy.org/wtfpl/
 [2]: https://github.com/nolanlawson/RelatednessCalculator
 [3]: http://apps.nolanlawson.com/relatedness-calculator/
+[5]: http://nolanwlawson.files.wordpress.com/2011/04/relatedness_calculator_version_2.png?w=600
