@@ -8,6 +8,8 @@ import java.util.TreeMap
 
 import org.springframework.web.context.request.RequestContextHolder
 
+import java.util.concurrent.TimeUnit
+
 
 
 class CalculatorController {
@@ -28,13 +30,9 @@ class CalculatorController {
 				escapedQuery : URLEncoder.encode(params.q,'UTF-8') ]
 		}
 	}
-	
-	def version() {
-		render text: grailsApplication.metadata['app.version'], contentType: 'text/plain'
-	}
-	
+
 	/**
-	 * ShowInformation on the graph cache
+	 * ShowInformation on the graph cache.  For debugging purposes only.
 	 * @return
 	 */
 	def cacheReport() {
@@ -47,6 +45,8 @@ class CalculatorController {
 	 * @return
 	 */
 	def generateGraph() {
+        cache shared:true, validFor: TimeUnit.DAYS.toSeconds(7) // cache for a week
+
 		String text = calculatorService.generateGraph(QueryUtils.cleanQuery(params.q)) ?: 'error'
 		render text: text, contentType: 'text/plain', template: null
 	}
