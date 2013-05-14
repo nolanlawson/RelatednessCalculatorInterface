@@ -18,7 +18,6 @@
 		<g:javascript library="jquery" />
 		<g:layoutHead/>
         <r:layoutResources />
-        <ga:trackPageview />
 	</head>
 	<body>
 		<div id="logo" class="header" role="banner">

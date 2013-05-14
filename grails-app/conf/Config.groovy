@@ -34,9 +34,6 @@ grails.resources.mappers.yuijsminify.excludes = ['**/*-min.js']
 
 richui.serve.resource.files.remote=true
 
-// Google analytics
-google.analytics.webPropertyID = 'UA-34670749-1'
-
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
