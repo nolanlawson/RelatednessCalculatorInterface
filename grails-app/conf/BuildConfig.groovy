@@ -2,9 +2,10 @@ grails.servlet.version = "2.5" // Change depending on target container complianc
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-grails.project.target.level = 1.6
-grails.project.source.level = 1.6
+grails.project.target.level = 1.8
+grails.project.source.level = 1.8
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
+grails.project.dependency.resolver="maven"
 
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
@@ -32,6 +33,8 @@ grails.project.dependency.resolution = {
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
+        compile "net.sf.ehcache:ehcache-core:2.4.6"
+        compile "cglib:cglib:3.1"
 
         // runtime 'mysql:mysql-connector-java:5.1.16'
 	runtime 'com.nolanlawson.relatedness:relatedness-calculator:1.0'
@@ -39,17 +42,16 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        compile ":richui:0.8"
 	    compile ":browser-detection:0.4.3"
         compile ':cache:1.0.1'
-        compile ":cache-headers:1.1.5"
+        compile ":cache-headers:1.1.7"
 
-        runtime ":jquery:1.7.1"
-        runtime ":resources:1.1.6"
+        runtime ":jquery:1.11.1"
+        runtime ":resources:1.2.14"
         runtime ":zipped-resources:1.0"
         runtime ":cached-resources:1.0"
         runtime ":yui-minify-resources:0.1.5"
 
-        build ":tomcat:$grailsVersion"
+        build ":tomcat:2.2.1"
     }
 }

@@ -1,5 +1,7 @@
 package com.nolanlawson.relatedness.ui
 
+import grails.converters.JSON
+
 import java.util.concurrent.TimeUnit
 
 class AutocompleteController {
@@ -9,21 +11,12 @@ class AutocompleteController {
     def index() {
         cache shared:true, validFor: TimeUnit.DAYS.toSeconds(1) // cache for a day
 
-		def query = params.query?:params.q;
+		def query = params.query?:params.term?:params.q;
 		
 		def suggestions = (!query || query == '') ?
 			[] :
 			autocompleteService.suggest(QueryUtils.cleanQuery(query));
 		
-		render (contentType: "text/xml") {
-			
-			results() {
-				suggestions.each { suggestion ->
-					result(){
-						name(suggestion)
-					}
-			    }
-		    }
-		};
+		render suggestions as JSON;
 	}
 }

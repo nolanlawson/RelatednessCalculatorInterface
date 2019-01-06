@@ -7,12 +7,7 @@
 <g:if test="${result && !result.failed && params.q && params.q.length() > 1}">
     ${Character.toString(Character.toUpperCase(params.q.charAt(0))) + params.q.substring(1)} - </g:if>Relatedness Calculator
 </title>
-<%-- it appears specifying skin : null fixes a 302 redirect where the app would normally redirect from a non-static
-to a static CSS file.  Adding it here gives us http://yui.yahooapis.com/2.8.0/build/autocomplete/assets/skins/sam/autocomplete.css,
-which I just override anyway using my own richui_autocomplete.css.  It's a hack, and it downloads an unnecessary CSS file from Yahoo,
-but it avoids unnecessary redirects caused by what is apparently a bug in the richui plugin. --%>
-<resource:include components="autoComplete, font" autoComplete="[skin: null]"/>
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'richui_autocomplete.css')}" type="text/css">
+<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
 <g:set var="titleFontSize" value="22" />
 <g:set var="titleFontColor" value="#333333" />
 <g:set var="titleFont" value="moderna" />
@@ -66,13 +61,10 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
         </div>
         </g:if>
         <div id="input-box-area" class="gray-box-background">
-		<div id="entry-form"">
+		<div id="entry-form">
 		    <h2>Enter relative:</h2><br/>
-			<g:form id="mainform" action="index" method="GET">
-			    <richui:autoComplete id="relation-input" name="q" 
-                        action="${createLinkTo('dir': 'autocomplete')}" 
-                        onItemSelect="document.forms[0].submit();"
-                        value="${params.q ?: ''}"/>
+			<g:form id="mainform" action="index" method="GET" style="display: flex;">
+				<input id="autosuggest-input" type="text" style="margin-right: 10px;">
 				<div id="formbox">
 				    <input type="submit" value="Calculate" />
 				</div>
@@ -291,5 +283,17 @@ but it avoids unnecessary redirects caused by what is apparently a bug in the ri
 		    </g:javascript>
 	    </browser:isMobile>
 	</g:else>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-ui.js')}"></script>
+    <g:javascript>
+		(function () {
+			$( "#autosuggest-input" ).autocomplete({
+				source: "autocomplete",
+				minLength: 2,
+				select: function( event, ui ) {
+					log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+				}
+			});
+		})();
+    </g:javascript>
 </body>
 </html>
