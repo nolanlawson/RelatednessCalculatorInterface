@@ -11,6 +11,12 @@
 <g:set var="titleFontSize" value="22" />
 <g:set var="titleFontColor" value="#333333" />
 <g:set var="titleFont" value="moderna" />
+<style>
+	/* hide canviz warning */
+	#debug_output {
+		display: none;
+	}
+</style>
 </head>
 <body>
 	<a href="#page-body" class="skip"><g:message
@@ -63,8 +69,8 @@
         <div id="input-box-area" class="gray-box-background">
 		<div id="entry-form">
 		    <h2>Enter relative:</h2><br/>
-			<g:form id="mainform" action="index" method="GET" style="display: flex;">
-				<input id="autosuggest-input" type="text" style="margin-right: 10px;">
+			<g:form id="mainform" class="the-main-form" action="index" method="GET" style="display: flex;">
+				<input id="autosuggest-input" name="q" type="text" style="margin-right: 10px;">
 				<div id="formbox">
 				    <input type="submit" value="Calculate" />
 				</div>
@@ -252,13 +258,10 @@
 			src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub">
 		</a>
 	</div>
+    <g:javascript src="jquery-ui.js"/>
 	<%--  execute all the graph-drawing code only after the page has loaded, and only if necessary --%>
 	<g:if test="${result && !result.failed}">
-		<g:javascript library="path" />
-		<g:javascript library="prototype" />
-		<g:javascript library="excanvas" />
-		<g:javascript library="canviz" />
-		<g:javascript library="drawcanviz"/>
+		<g:javascript src="canviz-concatenated.js" />
 		<g:javascript>
 		
 			function drawGraph() {
@@ -283,17 +286,18 @@
 		    </g:javascript>
 	    </browser:isMobile>
 	</g:else>
-    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-ui.js')}"></script>
     <g:javascript>
-		(function () {
+		(function ($) {
 			$( "#autosuggest-input" ).autocomplete({
 				source: "autocomplete",
 				minLength: 2,
-				select: function( event, ui ) {
-					log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+				select: function() {
+					setTimeout(function () {
+					    $('.the-main-form').submit();
+					});
 				}
 			});
-		})();
+		})(jQuery);
     </g:javascript>
 </body>
 </html>

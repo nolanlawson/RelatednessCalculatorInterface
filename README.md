@@ -37,6 +37,20 @@ advice about intra-family marriage (although some people might try to use it for
 What I'm mostly hoping for is just the gee-whiz factor of "Wow, my half-brother's 
 only as closely related to me as my grandma!" Or "Huh, so that's what a second cousin is."
 
+Build
+----
+
+Check out the [Relatedness Calculator][2] library, build it with `mvn install`.
+
+Then:
+
+```bash
+sudo apt install graphviz
+grails war
+```
+
+Then you have a war file.
+
 Backend code
 -----------
 

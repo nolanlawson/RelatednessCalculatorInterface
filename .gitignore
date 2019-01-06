@@ -5,3 +5,5 @@ logs
 .DS_Store
 .idea
 *.iml
+.slcache
+/classes

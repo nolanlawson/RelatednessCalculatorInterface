@@ -90,7 +90,7 @@ class CalculatorService {
 		def graph = convertGraphToXdotFormat(relationParseResult.graph.drawGraph());
 		
 		// find the pixel width
-		def graphWidth = Integer.parseInt((graph =~ ~/b="0,0,(\d+),/)[0][1])
+		def graphWidth = Double.parseDouble((graph =~ ~/b="0,0,([0-9.]+),/)[0][1])
 		
 		// calculate the Relatedness from the Relation
 		def relatedness = RelatednessCalculator.calculate(relationParseResult.relation);

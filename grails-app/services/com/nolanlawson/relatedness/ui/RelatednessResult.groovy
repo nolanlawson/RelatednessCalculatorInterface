@@ -11,7 +11,7 @@ public class RelatednessResult {
 	int degree;
 	double coefficient;
 	String graph;
-	int graphWidth;
+	double graphWidth;
 	
 	/**
 	 * Creates a new instance of this RelatednessResult without the graph.  Usually we don't need to send that
