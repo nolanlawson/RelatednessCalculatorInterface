@@ -1,3 +1,7 @@
+// Nolan's hack: prevent Prototype from modifying Array.prototype.map and JSON stringify of Arrays
+var _originalMap = Array.prototype.map;
+var _originalArray = Array;
+
 /*  Prototype JavaScript framework, version 1.6.0.3
  *  (c) 2005-2008 Sam Stephenson
  *
@@ -6340,3 +6344,7 @@ function drawCanviz(actualGraphWidth, escapedQuery) {
 	canviz.setScale(scale);
 	canviz.load("generateGraph?q=" + escapedQuery);
 }
+
+// Nolan's hack: prevent Prototype from modifying Array.prototype.map and JSON stringify of Arrays
+_originalArray.prototype.map = _originalMap;
+delete _originalArray.prototype.toJSON;
